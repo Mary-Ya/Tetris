@@ -26,42 +26,38 @@ function move(ofsX, ofsY) {
     var nextY = curTetro.Y + ofsY;
     clean();
     var cantMove = check(nextX, nextY, curTetro.fig);
-    
     if (cantMove == false){
         curTetro.X = nextX; // просто меняем координаты
         curTetro.Y = nextY;
         merge();
     } else {                // 
         if (ofsY !== 0) {  // если движение по Y
-            //goNext = true;
             merge();    
             cutLines();     
             curTetro = nextTetro();
             printNextTetro(curTetro.fig);
             cantMove = check(3, 0, curTetro.fig);
             if (cantMove !== false) {
-                merge();
                 gamover = true;
-                //printInfo("GAME OVER!!");
+                var color = Math.floor(Math.random()*7);
                 for (var i = 0; i < 20; i++) 
                     for (var j = 0; j < 10; j++) {
-                        mainScene[i][j] = 6;
+
+                        mainScene[i][j] = color;
                     };
-            }; 
-            
-        }; 
+            } 
+        } 
     };
     printArray(mainScene);
-    };
+    }
 };
 
 function merge() {
-        for (var i = 0; i < curTetro.fig.length; i++) {
+    for (var i = 0; i < curTetro.fig.length; i++) 
         for (var j = 0; j < curTetro.fig[i].length; j++) {
             if (curTetro.fig[i][j] !==0 )
             mainScene[curTetro.Y + i][curTetro.X + j] += curTetro.fig[i][j];
         };
-    };
     printArray(mainScene);
 };
 
@@ -70,8 +66,8 @@ function clean() {
         for (var j = 0; j < curTetro["fig"][i].length; j++) {
             if (curTetro.fig[i][j] !== 0) {
                 mainScene[curTetro.Y + i][curTetro.X + j] = 0;
-            };
-        };
+            }
+        }
     };
     printArray(mainScene);
 };
@@ -89,12 +85,11 @@ function cutLines() {
                 linesCount++
             }
         }
+
         if (reduceIt == true) {
             console.log("This line " + i + " will be reduced");
             scores += 100;
-
             var text = "YOUR SCORES: " + scores;
-
             printInfo('#scores', text)
             for (var j = i; j >= 0; j--) {
                 mainScene[j] = mainScene[j - 1];
@@ -102,6 +97,7 @@ function cutLines() {
             mainScene[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
     }
+
     if (reduceIt == true) { 
         speed -=20;
         var a = 1000 - speed
@@ -154,7 +150,6 @@ function turn() {
         for (var j = 0; j < newWidth; j++) {
             b[i][j] = curTetro.fig[newWidth - 1 - j][i];
         };
-    
     var cantMove = check(curTetro.X, curTetro.Y, b)
         if (cantMove == false) {
                 curTetro.fig = b;
