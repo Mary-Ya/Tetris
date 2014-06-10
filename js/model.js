@@ -1,6 +1,9 @@
 var mainScene = generateArray(20, 10);
 var tetroBar = [0,1,2,3,4,5,6];
 var nextTetroBar = [0,1,2,3,4,5,6];
+shuffle(tetroBar);
+shuffle(nextTetroBar);
+
 
 var curTetro = nextTetro();
 
@@ -16,7 +19,7 @@ var colorList = [
 
 
 var step = 0;
-
+//printNextTetro();
 
 function generateArray(h, w) {
     //printInfo("Creating Array");
@@ -36,12 +39,7 @@ function shuffle(o){ //v1.0
     };
 
 function nextTetro() {
-    var rand = Math.round(Math.random() * 6);
-    console.log("Go next!");
-
-    shuffle(tetroBar);
-    shuffle(nextTetroBar);
-
+//    console.log("Go next!");
 
     var superList = [
         [
@@ -77,7 +75,7 @@ function nextTetro() {
         ];
         
     var result = {
-        fig:superList[rand],
+        fig:superList[0],
         X: 3,
         Y: 0
     };
@@ -85,14 +83,17 @@ function nextTetro() {
     if (step < 7 ) {
         if (step == 0) {
             shuffle(tetroBar);
-        }
+        } else { }
         result.fig = superList[tetroBar[step]];
+            
         step ++;
         console.log("next");
+
     } else {
         step = 0;
         console.log(tetroBar);
     }
+
     
     return result;
 }

@@ -34,16 +34,15 @@ function printInfo(block, text) {
     output.innerHTML = text;
 };
 
-function printNextTetro(number) {
-    var names = [I,T,J,L,O,Z,S];
+function printNextTetro() {
+    var names = ["I","T","J","L","O","Z","S"];
     var inThisBar = [];
-    for (var i = 0; i < 7; i++) {
-        inThisBar[i] = names[number[i]];
-    };
+    inThisBar = names[tetroBar[step]];
     printInfo("#nextFigure", inThisBar);
 };
 
 function printArray(a) {
+    printNextTetro();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
     //console.log(output);
