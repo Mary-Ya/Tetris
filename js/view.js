@@ -37,7 +37,11 @@ function printInfo(block, text) {
 function printNextTetro() {
     var names = ["I","T","J","L","O","Z","S"];
     var inThisBar = [];
+    if (step < 7) {
     inThisBar = names[tetroBar[step]];
+    } else {
+        inThisBar = names[nextTetroBar[0]];
+    }
     printInfo("#nextFigure", inThisBar);
 };
 

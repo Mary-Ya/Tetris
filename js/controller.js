@@ -1,4 +1,4 @@
-var goNext = false;
+//var goNext = false;
 var scores = 0;
 var speed = 1000;
 
@@ -21,9 +21,7 @@ function play() {
 }
 
 function move(ofsX, ofsY) {
-    if (gamover == true) {
-        //printInfo("gamover!!")
-    } else {
+    if (gamover !== true) {
     var nextX = curTetro.X + ofsX;
     var nextY = curTetro.Y + ofsY;
     clean();
@@ -33,32 +31,26 @@ function move(ofsX, ofsY) {
         curTetro.X = nextX; // просто меняем координаты
         curTetro.Y = nextY;
         merge();
-    } else {
-        if (ofsY !== 0) {
-            goNext = true;
-            merge();
-            cutLines();
+    } else {                // 
+        if (ofsY !== 0) {  // если движение по Y
+            //goNext = true;
+            merge();    
+            cutLines();     
             curTetro = nextTetro();
-            printNextTetro(tetroBar[step]);
+            printNextTetro(curTetro.fig);
             cantMove = check(3, 0, curTetro.fig);
-            if (cantMove == false) {
-                curTetro.X = 3;
-                curTetro.Y = 0;
-                merge();
-            } else {
+            if (cantMove !== false) {
                 merge();
                 gamover = true;
-                printInfo("GAME OVER!!");
+                //printInfo("GAME OVER!!");
                 for (var i = 0; i < 20; i++) 
                     for (var j = 0; j < 10; j++) {
-                        mainScene[i][j] = 1;
+                        mainScene[i][j] = 6;
                     };
-            }
-        } else {
-            merge();
-        }
+            }; 
+            
+        }; 
     };
-    
     printArray(mainScene);
     };
 };
@@ -147,6 +139,7 @@ function check(nextX, nextY, fig) {
 };
 
 function turn() {
+    if (gamover !== true) {
     clean();
     var newWidth = curTetro.fig.length;
     var newLength = curTetro.fig[0].length;
@@ -170,4 +163,5 @@ function turn() {
         };
     merge();
     printArray(mainScene);
+    };
 };

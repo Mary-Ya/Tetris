@@ -1,0 +1,71 @@
+body.black {
+    background-color:white;
+    width:100%;
+    height:100%;
+    top: 0;
+    overflow: hidden;
+}
+
+#scene {
+    float:left; 
+    top: 50%;
+    text-align: center;
+    color: white;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    cursor: default!important;
+    font-family: mono-space, sans-serif;
+    font-size: 14px;
+    top: 5px;
+    left: 10px;
+    z-index: 2;
+    width: 50%;
+    overflow: hidden;
+    letter-spacing:0.6em;
+}
+
+#info {
+    float:left; 
+    top: 50%;
+    text-align: right;
+    color: black;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    cursor: default!important;
+    font-family: mono-space, sans-serif;
+    font-size: 14px;
+    top: 5px;
+    left: 10px;
+    z-index: 2;
+    width: 30%;
+    overflow: hidden;
+    letter-spacing:0.6em;
+}
+
+#bigButton {
+    color: white;
+        text-align: center;
+            font-family: mono-space, sans-serif;
+}
+#bigButton:hover {
+    color: green;
+}
+
+div.checked {
+    background-color:#000000;
+    height: 15px;
+    width: 15px;
+    border:2px solid #ffffff;
+    display:inline-block;
+}
+div.empty {
+    background-color:LightGray;
+    height: 15px;
+    width: 15px;
+    border:2px solid white;
+    display:inline-block;
+}

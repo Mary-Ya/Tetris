@@ -82,7 +82,8 @@ function nextTetro() {
     
     if (step < 7 ) {
         if (step == 0) {
-            shuffle(tetroBar);
+            tetroBar = nextTetroBar;
+            shuffle(nextTetroBar);
         } else { }
         result.fig = superList[tetroBar[step]];
             
