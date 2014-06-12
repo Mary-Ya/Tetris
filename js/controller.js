@@ -1,23 +1,19 @@
-//var goNext = false;
 var scores = 0;
 var speed = 1000;
+var gamover = false;
 
 function play() {
-    //a = generateArray(20, 10);
     merge();
     printArray(mainScene);
-    // здесь должен быть код, роняющий фигурки
-   var timer = setTimeout(function run() { 
-    
-    if (gamover == false) {
-        move(0, 1);
-    timer = setTimeout(run, speed);
-    } else {
-        clearTimeout(timer);
-    }
-  }, speed);
 
-
+    var timer = setTimeout(function run() { 
+        if (gamover == false) {
+            move(0, 1);
+            timer = setTimeout(run, speed);
+        } else {
+            clearTimeout(timer);
+        }
+    }, speed);
 }
 
 function move(ofsX, ofsY) {

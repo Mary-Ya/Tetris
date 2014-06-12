@@ -1,13 +1,6 @@
-var gamover = false;
 
 window.onload = function () {
-    //printInfo('Game Loaded');
-    //console.log('Game is on');
-   /* while (gamover = false) {
-        gamover = true;
-    };*/
     play();
-    //console.log('Game over');
 };
 
 ///////-----------------------------------------------------------
@@ -40,7 +33,7 @@ function printNextTetro() {
     if (step < 7) {
     inThisBar = names[tetroBar[step]];
     } else {
-        inThisBar = names[nextTetroBar[0]];
+        inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
     printInfo("#nextFigure", inThisBar);
 };
@@ -59,7 +52,7 @@ function printArray(a) {
             if (a[i][j] == 0) {
             } else {
                 div.style.backgroundColor = colorList[a[i][j]-1];
-            }
+            };
             line.appendChild(div);
         }
     }
