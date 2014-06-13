@@ -14,8 +14,24 @@ document.addEventListener('keydown', function (event) {
         turn();
     } else if (event.keyCode == 40) {
         move(0, 1);
-    }
+    } else if (event.keyCode == 32) {
+        if (pause == false) {
+            pause = true;
+        } else {
+            pause = false;
+        }
+    };
+    //alert(event.keyCode); // проверяем код кнопки
 });
+
+window.onkeydown = function(e){
+    var k = e.keyCode;
+    if(k == 32){
+        // нажат пробел
+        location.href = document.getElementById('linka').href;
+    }
+}
+
 //--------------------------ARROWS
 
 function printInfo(block, text) {
@@ -47,6 +63,7 @@ function printArray(a) {
             div.className = "pixel";
             if (a[i][j] == 0) {
             } else {
+                div.style.backgroundColor = colorList[a[i][j]-1];
                 div.style.backgroundColor = colorList[a[i][j]-1];
             };
             line.appendChild(div);

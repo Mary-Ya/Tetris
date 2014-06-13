@@ -1,6 +1,7 @@
 var scores = 0;
 var speed = 1000;
 var gamover = false;
+var pause = false;
 
 function play() {
     merge();
@@ -17,7 +18,7 @@ function play() {
 }
 
 function move(ofsX, ofsY) {
-    if (gamover !== true) {
+    if (gamover !== true && pause !== true) {
     var nextX = curTetro.X + ofsX;
     var nextY = curTetro.Y + ofsY;
     clean();
