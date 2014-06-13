@@ -135,7 +135,7 @@
 			"file": "js/controller.js",
 			"settings":
 			{
-				"buffer_size": 4356,
+				"buffer_size": 4300,
 				"line_ending": "Windows"
 			}
 		},
@@ -143,26 +143,15 @@
 			"file": "js/model.js",
 			"settings":
 			{
-				"buffer_size": 1786,
+				"buffer_size": 1733,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "var gamover = false;\n\nwindow.onload = function () {\n    //printInfo('Game Loaded');\n    //console.log('Game is on');\n   /* while (gamover = false) {\n        gamover = true;\n    };*/\n    play();\n    //console.log('Game over');\n};\n\n///////-----------------------------------------------------------\n//------ARROWS\ndocument.addEventListener('keydown', function (event) {\n    if (event.keyCode == 37) {\n        //printInfo('Left was pressed. go' + curTetro.X);\n        move(-1, 0);\n    } else if (event.keyCode == 39) {\n        //printInfo('Right was pressed. go' + curTetro.X);\n        move(1, 0);\n    } else if (event.keyCode == 38) {\n        //printInfo('Up was pressed');\n        turn();\n    } else if (event.keyCode == 40) {\n        //printInfo('Down was pressed. go' + curTetro.Y);\n        move(0, 1);\n    }\n});\n//--------------------------ARROWS\n\nfunction printInfo(block, text) {\n    var output = document.querySelector(block);\n    output.innerHTML = text;\n};\n\nfunction printNextTetro() {\n    var names = [\"I\",\"T\",\"J\",\"L\",\"O\",\"Z\",\"S\"];\n    var inThisBar = \"\";\n    if (step < 7) {\n    inThisBar = names[tetroBar[step]];\n    } else {\n        inThisBar = names[nextTetroBar[0]];\n    }\n    printInfo(\"#nextFigure\", inThisBar);\n};\n\nfunction printArray(a) {\n    printNextTetro();\n    var output = document.querySelector(\"#scene\");\n    output.innerHTML = \"\";\n    //console.log(output);\n    for (i = 0; i < 20; i++) {\n        var line = document.createElement(\"div\");\n        output.appendChild(line);\n        for (j = 0; j < 10; j++) {\n            var div = document.createElement(\"div\");\n            div.className = \"pixel\";\n            if (a[i][j] == 0) {\n            } else {\n                div.style.backgroundColor = colorList[a[i][j]-1];\n            };\n            line.appendChild(div);\n        }\n    }\n}",
 			"file": "js/view.js",
-			"file_size": 1873,
-			"file_write_time": 130468784060160000,
 			"settings":
 			{
-				"buffer_size": 1809,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/K/Program Files/Games/RockSmith2014/SKIDROW.ini",
-			"settings":
-			{
-				"buffer_size": 1285,
+				"buffer_size": 1636,
 				"line_ending": "Windows"
 			}
 		}
@@ -220,6 +209,7 @@
 	},
 	"file_history":
 	[
+		"/K/Program Files/Games/RockSmith2014/SKIDROW.ini",
 		"/H/Program Files/SUBLIMEText/Sublime Text Build 3059/Projects/Tetris-ref/newIndex.html",
 		"/H/Program Files/SUBLIMEText/Sublime Text Build 3059/Projects/Tetris-ref/css/style.css",
 		"/H/Program Files/SUBLIMEText/Sublime Text Build 3059/Projects/Tetris/save1",
@@ -364,7 +354,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -380,8 +370,8 @@
 						"selection":
 						[
 							[
-								829,
-								829
+								0,
+								976
 							]
 						],
 						"settings":
@@ -498,7 +488,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -514,8 +504,8 @@
 						"selection":
 						[
 							[
-								979,
-								979
+								0,
+								1624
 							]
 						],
 						"settings":
@@ -632,7 +622,7 @@
 						"translation.y": 635.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -641,15 +631,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4356,
+						"buffer_size": 4300,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1000,
-								1000
+								0,
+								4300
 							]
 						],
 						"settings":
@@ -763,7 +753,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1242.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -775,15 +765,149 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1786,
+						"buffer_size": 1733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								369,
-								369
+								0,
+								1733
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/view.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1636,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1636
 							]
 						],
 						"settings":
@@ -901,168 +1025,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/view.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1809,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1255,
-								1255
-							]
-						],
-						"settings":
-						{
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 486.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/K/Program Files/Games/RockSmith2014/SKIDROW.ini",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1285,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								638,
-								638
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 216.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
 					"type": "text"
 				}
 			]

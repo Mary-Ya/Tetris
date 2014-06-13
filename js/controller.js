@@ -31,7 +31,7 @@ function move(ofsX, ofsY) {
             merge();    
             cutLines();     
             curTetro = nextTetro();
-            printNextTetro(curTetro.fig);
+            //printNextTetro("Next figure: " + curTetro.fig);
             cantMove = check(3, 0, curTetro.fig);
             if (cantMove !== false) {
                 gamover = true;
@@ -69,6 +69,7 @@ function clean() {
 };
 
 function cutLines() {
+    var plusSpeed = false;
     var reduceIt = true;
     var linesCount = 0;
     for (var i = 0; i < mainScene.length; i++) {
@@ -83,6 +84,7 @@ function cutLines() {
         }
 
         if (reduceIt == true) {
+            plusSpeed = true;
             console.log("This line " + i + " will be reduced");
             scores += 100;
             var text = "YOUR SCORES: " + scores;
@@ -94,19 +96,17 @@ function cutLines() {
         }
     }
 
-    if (reduceIt == true) { 
-        speed -=20;
-        var a = 1000 - speed
-        printInfo("#speed", "Speed: " + a);
-    }
-
     if (linesCount > 3) {
+        speed -= 20;
         scores += 1200;
     } else if (linesCount == 3) {
+        speed -= 20;
         scores += 900;
     } else if (linesCount == 2) {
+        speed -= 20;
         scores += 400;
     } else if (linesCount == 1) {
+        speed -= 20;
         scores += 100;
     }
 

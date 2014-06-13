@@ -7,16 +7,12 @@ window.onload = function () {
 //------ARROWS
 document.addEventListener('keydown', function (event) {
     if (event.keyCode == 37) {
-        //printInfo('Left was pressed. go' + curTetro.X);
         move(-1, 0);
     } else if (event.keyCode == 39) {
-        //printInfo('Right was pressed. go' + curTetro.X);
         move(1, 0);
     } else if (event.keyCode == 38) {
-        //printInfo('Up was pressed');
         turn();
     } else if (event.keyCode == 40) {
-        //printInfo('Down was pressed. go' + curTetro.Y);
         move(0, 1);
     }
 });
@@ -35,7 +31,7 @@ function printNextTetro() {
     } else {
         inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
-    printInfo("#nextFigure", inThisBar);
+    printInfo("#nextFigure", "Next figure: " + inThisBar);
 };
 
 function printArray(a) {
