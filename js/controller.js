@@ -21,15 +21,18 @@ function move(ofsX, ofsY) {
     if (gamover !== true && pause !== true) {
     var nextX = curTetro.X + ofsX;
     var nextY = curTetro.Y + ofsY;
+
     clean();
     var cantMove = check(nextX, nextY, curTetro.fig);
+    merge();
     if (cantMove == false){
+        clean();
         curTetro.X = nextX; // просто меняем координаты
         curTetro.Y = nextY;
         merge();
     } else {                // 
         if (ofsY !== 0) {  // если движение по Y
-            merge();    
+            //merge();    
             cutLines();     
             curTetro = nextTetro();
             //printNextTetro("Next figure: " + curTetro.fig);

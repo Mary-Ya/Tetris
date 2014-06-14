@@ -21,7 +21,7 @@ document.addEventListener('keydown', function (event) {
             pause = false;
         }
     };
-    //alert(event.keyCode); // проверяем код кнопки
+    //alert(event); // проверяем код кнопки
 });
 
 window.onkeydown = function(e){
