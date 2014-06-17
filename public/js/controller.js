@@ -91,19 +91,18 @@ function cutLines() {
             plusSpeed = true;
             linesCount++
             console.log("This line " + i + " will be reduced");
-            if (linesCount > 3) {
-        speed -= 20;
-        scores += 1200;
-    } else if (linesCount == 3) {
-        speed -= 20;
-        scores += 900;
-    } else if (linesCount == 2) {
-        speed -= 20;
-        scores += 400;
-    } else if (linesCount == 1) {
-        speed -= 20;
-        scores += 100;
-    }
+            speed -= 20;
+
+                if (linesCount > 3) {
+                    scores += 1200;
+                } else if (linesCount == 3) {
+                    scores += 900;
+                } else if (linesCount == 2) {
+                    scores += 400;
+                } else if (linesCount == 1) {
+                    scores += 100;
+                }
+
             var text = "YOUR SCORES: " + scores;
             printInfo('#scores', text)
             for (var j = i; j >= 0; j--) {
