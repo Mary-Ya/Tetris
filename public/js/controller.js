@@ -83,24 +83,15 @@ function cutLines() {
             if (mainScene[i][j] == 0) {
                 reduceIt = false;
             } else {
-                linesCount++
+                
             }
         }
 
         if (reduceIt == true) {
             plusSpeed = true;
+            linesCount++
             console.log("This line " + i + " will be reduced");
-            scores += 100;
-            var text = "YOUR SCORES: " + scores;
-            printInfo('#scores', text)
-            for (var j = i; j >= 0; j--) {
-                mainScene[j] = mainScene[j - 1];
-            }
-            mainScene[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        }
-    }
-
-    if (linesCount > 3) {
+            if (linesCount > 3) {
         speed -= 20;
         scores += 1200;
     } else if (linesCount == 3) {
@@ -113,6 +104,17 @@ function cutLines() {
         speed -= 20;
         scores += 100;
     }
+            var text = "YOUR SCORES: " + scores;
+            printInfo('#scores', text)
+            for (var j = i; j >= 0; j--) {
+                mainScene[j] = mainScene[j - 1];
+            }
+            mainScene[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
+    }
+
+    
+
 
 };
 

@@ -48,6 +48,10 @@ function printNextTetro() {
         inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
     printInfo("#nextFigure", "Next figure: " + inThisBar);
+
+    var speedToView = 1000 - speed;
+    printInfo("#speed", "Speed: " + speedToView);
+
 };
 
 function printArray(a) {
