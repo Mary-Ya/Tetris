@@ -32,7 +32,6 @@ function move(ofsX, ofsY) {
         merge();
     } else {                // 
         if (ofsY !== 0) {  // если движение по Y
-            //merge();    
             cutLines();     
             curTetro = nextTetro();
             //printNextTetro("Next figure: " + curTetro.fig);
@@ -42,8 +41,7 @@ function move(ofsX, ofsY) {
                 var color = Math.floor(Math.random()*7);
                 for (var i = 0; i < 20; i++) 
                     for (var j = 0; j < 10; j++) {
-
-                        mainScene[i][j] = color;
+                       mainScene[i][j] = color;
                     };
             } 
         } 
@@ -111,10 +109,6 @@ function cutLines() {
             mainScene[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
     }
-
-    
-
-
 };
 
 function check(nextX, nextY, fig) {
@@ -154,8 +148,6 @@ function turn() {
     var cantMove = check(curTetro.X, curTetro.Y, b)
         if (cantMove == false) {
                 curTetro.fig = b;
-        } else {
-            console.log("ПРЕГРАДА");
         };
     merge();
     printArray(mainScene);

@@ -30,7 +30,7 @@ window.onkeydown = function(e){
         // нажат пробел
         location.href = document.getElementById('linka').href;
     }
-}
+};
 
 //--------------------------ARROWS
 
@@ -51,7 +51,6 @@ function printNextTetro() {
 
     var speedToView = 1000 - speed;
     printInfo("#speed", "Speed: " + speedToView);
-
 };
 
 function printArray(a) {
@@ -73,4 +72,4 @@ function printArray(a) {
             line.appendChild(div);
         }
     }
-}
+};

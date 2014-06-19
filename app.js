@@ -3,10 +3,10 @@ var express     = require("express");
 var app         = express();
  var fs = require('fs');
 
-fs.readdir('C:\\', function (err) {
+/*fs.readdir('C:\\', function (err) {
   if (err) throw err;
   console.log('successfully deleted /tmp/hello');
-});
+});*/
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
