@@ -56,7 +56,6 @@ body {
     margin:5px auto 5px;
     background-color:#FFFFFF;
     border: 3px solid black;
-
 }
 
 .myLabel {
@@ -73,9 +72,8 @@ body {
 
 div.checked {
     background-color:#000000;
-    
-
 }
+
 div.empty {
     background-color:#D3D3D3;
 }
@@ -94,6 +92,7 @@ div.empty {
 }
 
 .pixel {
+    z-index:901; 
     vertical-align: top;
     height: 15px;
     width: 15px;

@@ -14,9 +14,12 @@ document.addEventListener('keydown', function (event) {
         turn();
     } else if (event.keyCode == 40) {
         move(0, 1);
+    } else if (event.keyCode == 81) {
+        fade();
     } else if (event.keyCode == 32) {
         if (pause == false) {
             pause = true;
+            document.querySelector("#scene").style.zIndex=1000;
         } else {
             pause = false;
         }
@@ -73,3 +76,10 @@ function printArray(a) {
         }
     }
 };
+
+function fade() {
+    var page = document.querySelector("body");
+    var div = document.createElement("div");
+    div.className = "pauseBoard";
+    page.appendChild(div);
+}
