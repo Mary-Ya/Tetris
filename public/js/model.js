@@ -1,12 +1,21 @@
 var mainScene = generateArray(20, 10);
 var tetroBar = [0,1,2,3,4,5,6];
 var nextTetroBar = [0,1,2,3,4,5,6];
-
+var pausedScene = generateArray(20, 10);
 var step = 0;
 
 shuffle(tetroBar);
 shuffle(nextTetroBar);
+pauseGenerate();
 
+function pauseGenerate() {
+	
+	var color = Math.floor(Math.random()*7);
+            for (var i = 0; i < 20; i++) 
+            	for (var j = 0; j < 10; j++) {
+                	pausedScene[i][j] = color;
+    			};
+}
 
 var curTetro = nextTetro();
 

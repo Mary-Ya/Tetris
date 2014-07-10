@@ -19,21 +19,14 @@ document.addEventListener('keydown', function (event) {
     } else if (event.keyCode == 32) {
         if (pause == false) {
             pause = true;
-            document.querySelector("#scene").style.zIndex=1000;
+            fade();
         } else {
             pause = false;
+            printArray(mainScene);
         }
     };
     //alert(event); // проверяем код кнопки
 });
-
-window.onkeydown = function(e){
-    var k = e.keyCode;
-    if(k == 32){
-        // нажат пробел
-        location.href = document.getElementById('linka').href;
-    }
-};
 
 //--------------------------ARROWS
 
@@ -78,8 +71,12 @@ function printArray(a) {
 };
 
 function fade() {
-    var page = document.querySelector("body");
-    var div = document.createElement("div");
-    div.className = "pauseBoard";
-    page.appendChild(div);
+    printArray(pausedScene);
+    var sceneDiv = document.querySelector("#scene");
+    var pausedDiv = document.createElement("div");
+    pausedDiv.className  = "panel paused";
+    pausedDiv.innerHTML = "PAUSED";
+    pausedDiv.setAttribute('align', 'center')
+    sceneDiv.appendChild(pausedDiv);
+
 }
