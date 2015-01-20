@@ -71,6 +71,7 @@ function printArray(a) {
 };
 
 function fade() {
+    pauseGenerate();
     printArray(pausedScene);
     var sceneDiv = document.querySelector("#scene");
     var pausedDiv = document.createElement("div");

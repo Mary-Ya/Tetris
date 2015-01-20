@@ -9,7 +9,6 @@ shuffle(nextTetroBar);
 pauseGenerate();
 
 function pauseGenerate() {
-	
 	var color = Math.floor(Math.random()*7);
             for (var i = 0; i < 20; i++) 
             	for (var j = 0; j < 10; j++) {
