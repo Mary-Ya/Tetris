@@ -3,6 +3,27 @@ var speed = 1000;
 var gamover = false;
 var pause = false;
 
+function printArray(a) {
+    printNextTetro();
+    var output = document.querySelector("#scene");
+    output.innerHTML = "";
+    //console.log(output);
+    for (i = 0; i < 20; i++) {
+        var line = document.createElement("div");
+        output.appendChild(line);
+        for (j = 0; j < 10; j++) {
+            var div = document.createElement("div");
+            div.className = "pixel";
+            if (a[i][j] == 0) {
+            } else {
+                div.style.backgroundColor = colorList[a[i][j]-1];
+                div.style.backgroundColor = colorList[a[i][j]-1];
+            };
+            line.appendChild(div);
+        }
+    }
+};
+
 function play() {
     merge();
     printArray(mainScene);
@@ -38,11 +59,18 @@ function move(ofsX, ofsY) {
             cantMove = check(3, 0, curTetro.fig);
             if (cantMove !== false) {
                 gamover = true;
+
                 var color = Math.floor(Math.random()*7);
                 for (var i = 0; i < 20; i++) 
                     for (var j = 0; j < 10; j++) {
                        mainScene[i][j] = color;
                     };
+                message("GAME OVER");
+                console.log("GameOver");
+                /*pauseGenerate();
+                printArray(pausedScene);
+                
+                */
             } 
         } 
     };

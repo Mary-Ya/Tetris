@@ -49,35 +49,22 @@ function printNextTetro() {
     printInfo("#speed", "Speed: " + speedToView);
 };
 
-function printArray(a) {
-    printNextTetro();
-    var output = document.querySelector("#scene");
-    output.innerHTML = "";
-    //console.log(output);
-    for (i = 0; i < 20; i++) {
-        var line = document.createElement("div");
-        output.appendChild(line);
-        for (j = 0; j < 10; j++) {
-            var div = document.createElement("div");
-            div.className = "pixel";
-            if (a[i][j] == 0) {
-            } else {
-                div.style.backgroundColor = colorList[a[i][j]-1];
-                div.style.backgroundColor = colorList[a[i][j]-1];
-            };
-            line.appendChild(div);
-        }
-    }
-};
+
 
 function fade() {
+    if (gamover == false) {
     pauseGenerate();
     printArray(pausedScene);
-    var sceneDiv = document.querySelector("#scene");
-    var pausedDiv = document.createElement("div");
-    pausedDiv.className  = "panel paused";
-    pausedDiv.innerHTML = "PAUSED";
-    pausedDiv.setAttribute('align', 'center')
-    sceneDiv.appendChild(pausedDiv);
+    message("PAUSED");
+    console.log("Paused");
+    }
+}
 
+function message(text) {
+    var sceneDiv = document.querySelector("#scene");
+    var messageDiv = document.createElement("div");
+    messageDiv.className  = "panel message";
+    messageDiv.innerHTML = text;
+    messageDiv.setAttribute('align', 'center')
+    sceneDiv.appendChild(messageDiv);
 }
