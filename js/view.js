@@ -6,7 +6,7 @@ window.onload = function () {
 ///////-----------------------------------------------------------
 //------ARROWS
 document.addEventListener('keydown', function (event) {
-    if (event.keyCode == 37) {
+           if (event.keyCode == 37) {
         move(-1, 0);
     } else if (event.keyCode == 39) {
         move(1, 0);
@@ -60,11 +60,3 @@ function fade() {
     }
 }
 
-function message(text) {
-    var sceneDiv = document.querySelector("#scene");
-    var messageDiv = document.createElement("div");
-    messageDiv.className  = "panel message";
-    messageDiv.innerHTML = text;
-    messageDiv.setAttribute('align', 'center')
-    sceneDiv.appendChild(messageDiv);
-}

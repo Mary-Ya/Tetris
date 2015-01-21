@@ -24,6 +24,15 @@ function printArray(a) {
     }
 };
 
+function message(text) {
+    var sceneDiv = document.querySelector("#scene");
+    var messageDiv = document.createElement("div");
+    messageDiv.className  = "panel message";
+    messageDiv.innerHTML = text;
+    messageDiv.setAttribute('align', 'center')
+    sceneDiv.appendChild(messageDiv);
+};
+
 function play() {
     merge();
     printArray(mainScene);
@@ -57,24 +66,17 @@ function move(ofsX, ofsY) {
             curTetro = nextTetro();
             //printNextTetro("Next figure: " + curTetro.fig);
             cantMove = check(3, 0, curTetro.fig);
-            if (cantMove !== false) {
-                gamover = true;
-
-                var color = Math.floor(Math.random()*7);
-                for (var i = 0; i < 20; i++) 
-                    for (var j = 0; j < 10; j++) {
-                       mainScene[i][j] = color;
-                    };
-                message("GAME OVER");
-                console.log("GameOver");
-                /*pauseGenerate();
-                printArray(pausedScene);
-                
-                */
-            } 
+             
         } 
     };
     printArray(mainScene);
+    if (cantMove !== false) {
+            gamover = true;
+            console.log("GameOver");
+            pauseGenerate();
+            printArray(pausedScene);
+            message("GAME OVER");
+        }
     }
 };
 
