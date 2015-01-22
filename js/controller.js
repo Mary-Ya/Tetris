@@ -34,7 +34,9 @@ function message(text) {
 };
 
 function play() {
+    gamover = false;
     merge();
+    var mainScene = generateArray(20, 10);
     printArray(mainScene);
 
     var timer = setTimeout(function run() { 
@@ -45,7 +47,7 @@ function play() {
             clearTimeout(timer);
         }
     }, speed);
-}
+};
 
 function move(ofsX, ofsY) {
     if (gamover !== true && pause !== true) {
@@ -57,22 +59,21 @@ function move(ofsX, ofsY) {
     merge();
     if (cantMove == false){
         clean();
-        curTetro.X = nextX; // просто меняем координаты
+        curTetro.X = nextX; // меняем координаты
         curTetro.Y = nextY;
         merge();
     } else {                // 
         if (ofsY !== 0) {  // если движение по Y
-            cutLines();     
-            curTetro = nextTetro();
-            //printNextTetro("Next figure: " + curTetro.fig);
-            cantMove = check(3, 0, curTetro.fig);
+            cutLines();
+            curTetro = nextTetro();             //Проверяем сможет ли следующий тетро
+            cantMove = check(3, 0, curTetro.fig);//свалиться сверху
             printArray(mainScene);
-            if (cantMove !== false) {
+            if (cantMove !== false) {   
                 gamover = true;
                 console.log("GameOver");
                 pauseGenerate();
                 printArray(pausedScene);
-                message("GAME OVER");
+                message("GAME OVER! PRESS ANY KAY FOR START");
             }; 
         }; 
     };

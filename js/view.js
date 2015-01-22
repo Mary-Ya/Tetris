@@ -1,12 +1,22 @@
 
 window.onload = function () {
     play();
+    gamover = true;
+    pauseGenerate();
+    printArray(pausedScene);
+    message("ANY KAY FOR START");
+    /*89 - Y
+    78 - N
+    68- D
+    13 - ENTER
+    */
 };
 
 ///////-----------------------------------------------------------
 //------ARROWS
 document.addEventListener('keydown', function (event) {
-           if (event.keyCode == 37) {
+    if (gamover == false) {
+        if (event.keyCode == 37) {
         move(-1, 0);
     } else if (event.keyCode == 39) {
         move(1, 0);
@@ -25,7 +35,11 @@ document.addEventListener('keydown', function (event) {
             printArray(mainScene);
         }
     };
-    //alert(event); // проверяем код кнопки
+    } else {
+        play();
+        gamover = false;
+    }
+    //alert(event.keyCode); // проверяем код кнопки
 });
 
 //--------------------------ARROWS
