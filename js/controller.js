@@ -66,18 +66,17 @@ function move(ofsX, ofsY) {
             curTetro = nextTetro();
             //printNextTetro("Next figure: " + curTetro.fig);
             cantMove = check(3, 0, curTetro.fig);
-             
-        } 
+            printArray(mainScene);
+            if (cantMove !== false) {
+                gamover = true;
+                console.log("GameOver");
+                pauseGenerate();
+                printArray(pausedScene);
+                message("GAME OVER");
+            }; 
+        }; 
     };
-    printArray(mainScene);
-    if (cantMove !== false) {
-            gamover = true;
-            console.log("GameOver");
-            pauseGenerate();
-            printArray(pausedScene);
-            message("GAME OVER");
-        }
-    }
+    };
 };
 
 function merge() {
