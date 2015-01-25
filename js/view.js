@@ -1,11 +1,13 @@
-
 window.onload = function () {
-    play();
+    game = new Game();
+    printArray(mainScene);
+    message("PRESS SPACE TO START");
 };
 
 ///////-----------------------------------------------------------
 //------ARROWS
 document.addEventListener('keydown', function (event) {
+    if (game.over == false && game.pause == false) {
            if (event.keyCode == 37) {
         move(-1, 0);
     } else if (event.keyCode == 39) {
@@ -17,22 +19,50 @@ document.addEventListener('keydown', function (event) {
     } else if (event.keyCode == 81) {
         fade();
     } else if (event.keyCode == 32) {
-        if (pause == false) {
-            pause = true;
+        if (game.pause == false) {
+            game.pause = true;
             fade();
-        } else {
-            pause = false;
+        } 
+    };
+    } else {
+        if (game.over == true) {
+            if (event.keyCode == 32) {
+                game = new Game();
+                game.start();
+                printArray(mainScene);
+                printInfo("#header","Try hard!");
+                game.over = false;
+                game.play();
+            }
+        } else if (game.pause == true && event.keyCode == 32)
+        {
+            game.pause = false;
             printArray(mainScene);
         }
-    };
-    //alert(event); // проверяем код кнопки
+    }
+    //alert(event.keyCode); // проверяем код кнопки
 });
 
 //--------------------------ARROWS
 
-function printInfo(block, text) {
-    var output = document.querySelector(block);
-    output.innerHTML = text;
+function printArray(a) {
+    printNextTetro();
+    var output = document.querySelector("#scene");
+    output.innerHTML = "";
+    //console.log(output);
+    for (i = 0; i < 20; i++) {
+        var line = document.createElement("div");
+        output.appendChild(line);
+        for (j = 0; j < 10; j++) {
+            var div = document.createElement("div");
+            div.className = "pixel";
+            if (a[i][j] !== 0) {
+                div.style.backgroundColor = colorList[a[i][j]-1];
+                div.style.backgroundColor = colorList[a[i][j]-1];
+            };
+            line.appendChild(div);
+        };
+    };
 };
 
 function printNextTetro() {
@@ -45,17 +75,17 @@ function printNextTetro() {
     }
     printInfo("#nextFigure", "Next figure: " + inThisBar);
 
-    var speedToView = 1000 - speed;
+    var speedToView = 1000 - game.speed;
     printInfo("#speed", "Speed: " + speedToView);
 };
 
 
 
 function fade() {
-    if (gamover == false) {
-    pauseGenerate();
+    if (game.over == false) {
+    coloredArrayGenerate();
     printArray(pausedScene);
-    message("PAUSED");
+    message("PAUSED PRESS SPACE TO CONTINUE");
     console.log("Paused");
     }
 }

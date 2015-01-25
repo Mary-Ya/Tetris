@@ -1,54 +1,61 @@
-var scores = 0;
-var speed = 1000;
-var gamover = false;
-var pause = false;
-
-function printArray(a) {
-    printNextTetro();
-    var output = document.querySelector("#scene");
-    output.innerHTML = "";
-    //console.log(output);
-    for (i = 0; i < 20; i++) {
-        var line = document.createElement("div");
-        output.appendChild(line);
-        for (j = 0; j < 10; j++) {
-            var div = document.createElement("div");
-            div.className = "pixel";
-            if (a[i][j] == 0) {
-            } else {
-                div.style.backgroundColor = colorList[a[i][j]-1];
-                div.style.backgroundColor = colorList[a[i][j]-1];
-            };
-            line.appendChild(div);
-        }
-    }
+var Game = function () {
+    //var mainScene = generateArray(20, 10);
+    
 };
+
+Game.prototype = {
+    scores: 0,
+    speed: 1000,
+    over: true,
+    pause: false,
+
+    
+};
+
+Game.prototype.start = function() {
+        mainScene = generateArray(20, 10);
+        tetroBar = [0,1,2,3,4,5,6];
+        nextTetroBar = [0,1,2,3,4,5,6];
+        pausedScene = generateArray(20, 10);
+        step = 0;
+
+
+        shuffle(tetroBar);
+        shuffle(nextTetroBar);
+        coloredArrayGenerate();
+    };
 
 function message(text) {
     var sceneDiv = document.querySelector("#scene");
     var messageDiv = document.createElement("div");
     messageDiv.className  = "panel message";
     messageDiv.innerHTML = text;
-    messageDiv.setAttribute('align', 'center')
+    messageDiv.setAttribute('align', 'center');
     sceneDiv.appendChild(messageDiv);
 };
 
-function play() {
+function printInfo(block, text) {
+    var output = document.querySelector(block);
+    output.innerHTML = text;
+};
+
+Game.prototype.play = function() {
+
     merge();
     printArray(mainScene);
 
     var timer = setTimeout(function run() { 
-        if (gamover == false) {
+        if (game.over == false) {
             move(0, 1);
-            timer = setTimeout(run, speed);
+            timer = setTimeout(run, game.speed);
         } else {
             clearTimeout(timer);
         }
-    }, speed);
+    }, game.speed);
 }
 
 function move(ofsX, ofsY) {
-    if (gamover !== true && pause !== true) {
+    if (game.over !== true && game.pause !== true) {
     var nextX = curTetro.X + ofsX;
     var nextY = curTetro.Y + ofsY;
 
@@ -68,11 +75,12 @@ function move(ofsX, ofsY) {
             cantMove = check(3, 0, curTetro.fig);
             printArray(mainScene);
             if (cantMove !== false) {
-                gamover = true;
+                game.over = true;
                 console.log("GameOver");
-                pauseGenerate();
+                coloredArrayGenerate();
                 printArray(pausedScene);
-                message("GAME OVER");
+                message("GAME OVER! PRESS SPACE TO START");
+                printInfo("#header","Ready to play again?");
             }; 
         }; 
     };
@@ -118,19 +126,19 @@ function cutLines() {
             plusSpeed = true;
             linesCount++
             console.log("This line " + i + " will be reduced");
-            speed -= 20;
+            game.speed -= 20;
 
                 if (linesCount > 3) {
-                    scores += 1200;
+                    game.scores += 1200;
                 } else if (linesCount == 3) {
-                    scores += 900;
+                    game.scores += 900;
                 } else if (linesCount == 2) {
-                    scores += 400;
+                    game.scores += 400;
                 } else if (linesCount == 1) {
-                    scores += 100;
+                    game.scores += 100;
                 }
 
-            var text = "YOUR SCORES: " + scores;
+            var text = "Scores: " + game.scores;
             printInfo('#scores', text)
             for (var j = i; j >= 0; j--) {
                 mainScene[j] = mainScene[j - 1];
@@ -159,7 +167,7 @@ function check(nextX, nextY, fig) {
 };
 
 function turn() {
-    if (gamover !== true) {
+    if (game.over !== true) {
     clean();
     var newWidth = curTetro.fig.length;
     var newLength = curTetro.fig[0].length;
