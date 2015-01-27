@@ -1,125 +1,110 @@
 body {
-
-    background-color:#EBEBEB;
-    margin:0 auto;
-    font-family:'Helvetica';
-    color:#333333;
+    background-color: #EBEBEB;
+    margin: 0 auto;
+    font-family: 'Helvetica';
+    color: #333333;
     text-align: center;
     overflow: hidden;
     width: 100%;
     height: 100%;
-     -moz-user-select: none; 
-     -webkit-user-select: none;
-
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
-
 :hover {
-    cursor:default;
+    cursor: default;
 }
-
 #header {
-    margin:0;
-    height:36px;
+    margin: 0;
+    height: 36px;
     height: auto !important;
-    font-size:150%;
+    font-size: 150%;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
-    z-index:1000;
-    position:relative;
+    z-index: 1000;
+    position: relative;
     min-height: 100%;
 }
-
 #upPanel {
-    width:250px;
-    margin:0 auto;
-    margin-top:-10px;
-    z-index:900;
-    position:relative;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: -10px;
+    z-index: 900;
+    position: relative;
     padding: 10px 0 10 0;
 }
-
 #downPanel {
     width: 250px;
-    margin:0 auto;
-    z-index:900;
+    margin: 0 auto;
+    z-index: 900;
     padding: 10px 0 10 0;
     height: 30px;
     position: relative;
     bottom: 0;
-    margin-top:-10px;
+    margin-top: -10px;
 }
-
 #scene {
-    width:250px;
-    margin:0 auto;
-    margin-top:-10px;
-    z-index:500;
-    position:relative;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: -10px;
+    z-index: 500;
+    position: relative;
     padding: 30px 0 30px;
-    vertical-align:center;
+    vertical-align: center;
 }
-
-.panel{
-    font-size:14px;
-    margin:5px auto 5px;
-    background-color:#FFFFFF;
+.panel {
+    font-size: 14px;
+    margin: 5px auto 5px;
+    background-color: #FFFFFF;
     border: 3px solid black;
 }
-
 .message {
     padding: 10px 0 10px 0;
-    font-size:20px;
-    width:154px;
-    min-height:25px;
-    position:absolute;
-    vertical-align:center;
-    text-align:center;
-    z-index:1000;
-    left:50%;
-    margin-left:-80px;
-    top:8%;
+    font-size: 20px;
+    width: 154px;
+    min-height: 25px;
+    position: absolute;
+    vertical-align: center;
+    text-align: center;
+    z-index: 1000;
+    left: 50%;
+    margin-left: -80px;
+    top: 8%;
 }
-
 .myLabel {
-    font-size:14px;
-    padding:5px;
-    background-color:#FFFFFF;
+    font-size: 14px;
+    padding: 5px;
+    background-color: #FFFFFF;
     border: 3px solid black;
-    width:154px;
-    margin:0px auto;
-    margin-top:-10px;
-    z-index:1000; 
-    position:relative;
+    width: 154px;
+    margin: 0px auto;
+    margin-top: -10px;
+    z-index: 1000;
+    position: relative;
 }
-
 .checked {
-    background-color:#000000;
+    background-color: #000000;
 }
-
 .empty {
-    background-color:#D3D3D3;
+    background-color: #D3D3D3;
 }
-
 .main {
     /*min-height: 100%;
     height: auto!important;
     height: 100%;
     margin: 0 auto -60px;*/
 }
-
 .line {
-    position:relative;
-    margin:0 auto;
-    clear:right;
+    position: relative;
+    margin: 0 auto;
+    clear: right;
 }
-
 .pixel {
-    z-index:901; 
+    z-index: 901;
     vertical-align: top;
     height: 15px;
     width: 15px;
-    border:2px solid #ffffff;
-    display:inline-block;
-    background-color:#D3D3D3;
+    border: 2px solid #ffffff;
+    display: inline-block;
+    background-color: #D3D3D3;
 }

@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function() {
     game = new Game();
     printArray(mainScene);
     message("PRESS SPACE TO START");
@@ -6,36 +6,35 @@ window.onload = function () {
 
 ///////-----------------------------------------------------------
 //------ARROWS
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function(event) {
     if (game.over == false && game.pause == false) {
-           if (event.keyCode == 37) {
-        move(-1, 0);
-    } else if (event.keyCode == 39) {
-        move(1, 0);
-    } else if (event.keyCode == 38) {
-        turn();
-    } else if (event.keyCode == 40) {
-        move(0, 1);
-    } else if (event.keyCode == 81) {
-        fade();
-    } else if (event.keyCode == 32) {
-        if (game.pause == false) {
-            game.pause = true;
+        if (event.keyCode == 37) {
+            move(-1, 0);
+        } else if (event.keyCode == 39) {
+            move(1, 0);
+        } else if (event.keyCode == 38) {
+            turn();
+        } else if (event.keyCode == 40) {
+            move(0, 1);
+        } else if (event.keyCode == 81) {
             fade();
-        } 
-    };
+        } else if (event.keyCode == 32) {
+            if (game.pause == false) {
+                game.pause = true;
+                fade();
+            }
+        };
     } else {
         if (game.over == true) {
             if (event.keyCode == 32) {
                 game = new Game();
                 game.start();
                 printArray(mainScene);
-                printInfo("#header","Try hard!");
+                printInfo("#header", "Try hard!");
                 game.over = false;
                 game.play();
             }
-        } else if (game.pause == true && event.keyCode == 32)
-        {
+        } else if (game.pause == true && event.keyCode == 32) {
             game.pause = false;
             printArray(mainScene);
         }
@@ -52,24 +51,24 @@ function printArray(a) {
     //console.log(output);
     for (i = 0; i < 20; i++) {
         var line = document.createElement("div");
-        output.appendChild(line);
+        var thisLine = output.appendChild(line);
         for (j = 0; j < 10; j++) {
-            var div = document.createElement("div");
-            div.className = "pixel";
+            var newDiv = document.createElement("div");
+            newDiv.className = "pixel";
             if (a[i][j] !== 0) {
-                div.style.backgroundColor = colorList[a[i][j]-1];
-                div.style.backgroundColor = colorList[a[i][j]-1];
+                //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
+                newDiv.style.background = colorList[a[i][j] - 1];
             };
-            line.appendChild(div);
+            thisLine.appendChild(newDiv);
         };
     };
 };
 
 function printNextTetro() {
-    var names = ["I","T","J","L","O","Z","S"];
+    var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
     if (step < 7) {
-    inThisBar = names[tetroBar[step]];
+        inThisBar = names[tetroBar[step]];
     } else {
         inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
@@ -83,10 +82,9 @@ function printNextTetro() {
 
 function fade() {
     if (game.over == false) {
-    coloredArrayGenerate();
-    printArray(pausedScene);
-    message("PAUSED PRESS SPACE TO CONTINUE");
-    console.log("Paused");
+        coloredArrayGenerate();
+        printArray(pausedScene);
+        message("PAUSED PRESS SPACE TO CONTINUE");
+        console.log("Paused");
     }
 }
-
