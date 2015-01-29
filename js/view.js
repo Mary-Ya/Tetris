@@ -82,6 +82,7 @@ function printNextTetro() {
 
     var speedToView = 1000 - game.speed;
     printInfo("#speed", "Speed: " + speedToView);
+    printInfo("#scores", "Scores: " + game.scores);
 };
 
 

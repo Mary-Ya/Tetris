@@ -81,6 +81,7 @@ function move(ofsX, ofsY) {
                     printArray(pausedScene);
                     message("GAME OVER! PRESS SPACE TO RESTART");
                     printInfo("#header", "Ready to play again?");
+                    
                 };
             };
         };
