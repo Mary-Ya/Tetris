@@ -8,6 +8,8 @@ window.onload = function() {
 //------ARROWS
 document.addEventListener('keydown', function(event) {
     if (game.over == false && game.pause == false) {
+
+        // Arrows 
         if (event.keyCode == 37) {
             move(-1, 0);
         } else if (event.keyCode == 39) {
@@ -23,7 +25,11 @@ document.addEventListener('keydown', function(event) {
                 game.pause = true;
                 fade();
             }
-        };
+        } // **arrows
+        else if (event.keyCode == 88) { //Drop down
+            drop();
+        }
+
     } else {
         if (game.over == true) {
             if (event.keyCode == 32) {

@@ -190,3 +190,11 @@ function turn() {
         printArray(mainScene);
     };
 };
+
+function drop() {
+    var thisTetro = curTetro.fig;
+    while (thisTetro == curTetro.fig)
+    { 
+    move(0,1);
+    }
+};
