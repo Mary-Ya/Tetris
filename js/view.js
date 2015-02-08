@@ -18,9 +18,11 @@ document.addEventListener('keydown', function(event) {
             turn(); // up / W
         } else if (event.keyCode == 40 || event.keyCode == 83) {
             move(0, 1); // S
-        } /*else if (event.keyCode == 81) {
+        }
+        /*else if (event.keyCode == 81) {
             fade(); // Q
-        } */else if (event.keyCode == 32) {
+        } */
+        else if (event.keyCode == 32) {
             if (game.pause == false) {
                 game.pause = true;
                 fade();
@@ -36,7 +38,7 @@ document.addEventListener('keydown', function(event) {
                 game = new Game();
                 game.start();
                 printArray(mainScene);
-                printInfo("#header", "Try hard!");
+                printInfo("#headerMid", "Try hard!");
                 game.over = false;
                 game.play();
             }
@@ -49,6 +51,20 @@ document.addEventListener('keydown', function(event) {
 });
 
 //--------------------------ARROWS
+var help = document.getElementById('help');
+var about = document.getElementById('about');
+help.onclick = function() {
+    fade()
+    game.pause = true;
+    message('Arrows or AWSD to move. Q to drop figure. SPACE to pause.')
+}
+about.onclick = function() {
+    fade()
+    message('This is a game like tetris. No one is going to help you.')
+}
+
+
+
 
 function printArray(a) {
     printNextTetro();
@@ -82,7 +98,7 @@ function printNextTetro() {
 
     var speedToView = 1000 - game.speed;
     printInfo("#speed", "Speed: " + speedToView);
-    printInfo("#scores", "Scores: " + game.scores);
+    printInfo("#scores", "Score: " + game.scores);
 };
 
 

@@ -15,16 +15,62 @@ body {
 }
 #header {
     margin: 0;
-    height: 36px;
-    height: auto !important;
+    min-height: 100%;
     font-size: 150%;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
     z-index: 1000;
     position: relative;
-    min-height: 100%;
+    vertical-align: center;
 }
+div.middle {
+    margin: 0;
+    vertical-align: center;
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+}
+div.left {
+    top: 0;
+    margin: auto;
+    vertical-align: center;
+    position: relative;
+    display: inline-block;
+    width: 33%;
+    text-align: left;
+}
+
+div.right {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    width: 33%;
+    text-align: right;
+}
+
+div.but {
+    position: relative;
+    display: inline-block;
+    text-align: right;
+}
+
+#help {
+    color: #1882D9;
+}
+
+#about {
+    color: #D96D0D;
+}
+#help:hover {
+    color: #2E1572;
+}
+
+#about:hover {
+    color: #631878;
+}
+
 #upPanel {
     width: 250px;
     margin: 0 auto;

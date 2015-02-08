@@ -80,7 +80,7 @@ function move(ofsX, ofsY) {
                     coloredArrayGenerate();
                     printArray(pausedScene);
                     message("GAME OVER! PRESS SPACE TO RESTART");
-                    printInfo("#header", "Ready to play again?");
+                    printInfo("#headerMid", "Ready to play again?");
                     
                 };
             };
