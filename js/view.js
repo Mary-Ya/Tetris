@@ -54,12 +54,11 @@ document.addEventListener('keydown', function(event) {
 var help = document.getElementById('help');
 var about = document.getElementById('about');
 help.onclick = function() {
-    fade()
-    game.pause = true;
+    printArray(pausedScene);
     message('Arrows or AWSD to move. Q to drop figure. SPACE to pause.')
 }
 about.onclick = function() {
-    fade()
+    printArray(pausedScene);
     message('This is a game like tetris. No one is going to help you.')
 }
 
@@ -85,6 +84,21 @@ function printArray(a) {
         };
     };
 };
+
+function message(text) {
+    var sceneDiv = document.querySelector("#scene");
+    var messageDiv = document.createElement("div");
+    messageDiv.className = "panel message";
+    messageDiv.innerHTML = text;
+    messageDiv.setAttribute('align', 'center');
+    sceneDiv.appendChild(messageDiv);
+};
+
+function printInfo(block, text) {
+    var output = document.querySelector(block);
+    output.innerHTML = text;
+};
+
 
 function printNextTetro() {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];

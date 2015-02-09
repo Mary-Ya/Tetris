@@ -18,25 +18,9 @@ Game.prototype.start = function() {
     nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
     pausedScene = generateArray(20, 10);
     step = 0;
-
-
     shuffle(tetroBar);
     shuffle(nextTetroBar);
     coloredArrayGenerate();
-};
-
-function message(text) {
-    var sceneDiv = document.querySelector("#scene");
-    var messageDiv = document.createElement("div");
-    messageDiv.className = "panel message";
-    messageDiv.innerHTML = text;
-    messageDiv.setAttribute('align', 'center');
-    sceneDiv.appendChild(messageDiv);
-};
-
-function printInfo(block, text) {
-    var output = document.querySelector(block);
-    output.innerHTML = text;
 };
 
 Game.prototype.play = function() {
@@ -52,6 +36,7 @@ Game.prototype.play = function() {
             clearTimeout(timer);
         }
     }, game.speed);
+    
 }
 
 function move(ofsX, ofsY) {
@@ -81,7 +66,7 @@ function move(ofsX, ofsY) {
                     printArray(pausedScene);
                     message("GAME OVER! PRESS SPACE TO RESTART");
                     printInfo("#headerMid", "Ready to play again?");
-                    
+
                 };
             };
         };
@@ -194,8 +179,7 @@ function turn() {
 
 function drop() {
     var thisTetro = curTetro.fig;
-    while (thisTetro == curTetro.fig)
-    { 
-    move(0,1);
+    while (thisTetro == curTetro.fig) {
+        move(0, 1);
     }
 };
