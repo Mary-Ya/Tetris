@@ -29,7 +29,7 @@ Round.prototype.play = function() {
 
     var timer = setTimeout(function run() {
         if (round.over == false) {
-            move(0, 1);
+            curTetro.move(0, 1);
             timer = setTimeout(run, round.speed);
         } else {
             clearTimeout(timer);
@@ -38,19 +38,21 @@ Round.prototype.play = function() {
 
 }
 
-/*Tetromino.prototype.move(direction) {
+/*Tetromino.prototype.curTetro.move(direction) {
     switch (direction) {
-        case value1:
+        case left:
             break;
+        case right:
+            break;
+        case drop:  
+            break;  
         default:
-            //Statements executed when none of the values match the value of the expression
-            [
-                break;
-            ]
-    }
+            console.log("Use existed directions: left, right, drop")
+            break;
+    };
 };*/
 
-function move(ofsX, ofsY) {
+Tetromino.prototype.move = function(ofsX, ofsY) {
     if (round.over !== true && round.pause !== true) {
         var nextX = curTetro.X + ofsX;
         var nextY = curTetro.Y + ofsY;
@@ -191,6 +193,6 @@ function turn() {
 function drop() {
     var thisTetro = curTetro.fig;
     while (thisTetro == curTetro.fig) {
-        move(0, 1);
+        curTetro.move(0, 1);
     }
 };
