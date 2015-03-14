@@ -1,18 +1,17 @@
-var Game = function() {
-    //var mainScene = generateArray(20, 10);
+var Round = function() {
+    // new round started
+    this.scores = 0;
+    this.speed = 1000;
+    this.over = true;
+    this.pause = false;
 
 };
 
-Game.prototype = {
-    scores: 0,
-    speed: 1000,
-    over: true,
-    pause: false,
-
+Round.prototype = {
 
 };
 
-Game.prototype.start = function() {
+Round.prototype.start = function() {
     mainScene = generateArray(20, 10);
     tetroBar = [0, 1, 2, 3, 4, 5, 6];
     nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
@@ -23,24 +22,36 @@ Game.prototype.start = function() {
     coloredArrayGenerate();
 };
 
-Game.prototype.play = function() {
+Round.prototype.play = function() {
 
     merge();
-    printArray(mainScene);
+    display.scene(mainScene);
 
     var timer = setTimeout(function run() {
-        if (game.over == false) {
+        if (round.over == false) {
             move(0, 1);
-            timer = setTimeout(run, game.speed);
+            timer = setTimeout(run, round.speed);
         } else {
             clearTimeout(timer);
         }
-    }, game.speed);
-    
+    }, round.speed);
+
 }
 
+/*Tetromino.prototype.move(direction) {
+    switch (direction) {
+        case value1:
+            break;
+        default:
+            //Statements executed when none of the values match the value of the expression
+            [
+                break;
+            ]
+    }
+};*/
+
 function move(ofsX, ofsY) {
-    if (game.over !== true && game.pause !== true) {
+    if (round.over !== true && round.pause !== true) {
         var nextX = curTetro.X + ofsX;
         var nextY = curTetro.Y + ofsY;
 
@@ -55,16 +66,16 @@ function move(ofsX, ofsY) {
         } else { // 
             if (ofsY !== 0) { // если движение по Y
                 cutLines();
-                curTetro = nextTetro();
+                curTetro = new Tetromino();
                 //printNextTetro("Next figure: " + curTetro.fig);
                 cantMove = check(3, 0, curTetro.fig);
-                printArray(mainScene);
+                display.scene(mainScene);
                 if (cantMove !== false) {
-                    game.over = true;
+                    round.over = true;
                     console.log("GameOver");
                     coloredArrayGenerate();
-                    printArray(pausedScene);
-                    message("GAME OVER! PRESS SPACE TO RESTART");
+                    display.scene(pausedScene);
+                    display.message("GAME OVER! PRESS SPACE TO RESTART");
                     printInfo("#headerMid", "Ready to play again?");
 
                 };
@@ -79,7 +90,7 @@ function merge() {
             if (curTetro.fig[i][j] !== 0)
                 mainScene[curTetro.Y + i][curTetro.X + j] += curTetro.fig[i][j];
         };
-    printArray(mainScene);
+    display.scene(mainScene);
 };
 
 function clean() {
@@ -90,7 +101,7 @@ function clean() {
             }
         }
     };
-    printArray(mainScene);
+    display.scene(mainScene);
 };
 
 function cutLines() {
@@ -112,19 +123,19 @@ function cutLines() {
             plusSpeed = true;
             linesCount++
             console.log("This line " + i + " will be reduced");
-            game.speed -= 20;
+            round.speed -= 20;
 
             if (linesCount > 3) {
-                game.scores += 1200;
+                round.scores += 1200;
             } else if (linesCount == 3) {
-                game.scores += 900;
+                round.scores += 900;
             } else if (linesCount == 2) {
-                game.scores += 400;
+                round.scores += 400;
             } else if (linesCount == 1) {
-                game.scores += 100;
+                round.scores += 100;
             }
 
-            var text = "Scores: " + game.scores;
+            var text = "Scores: " + round.scores;
             printInfo('#scores', text)
             for (var j = i; j >= 0; j--) {
                 mainScene[j] = mainScene[j - 1];
@@ -153,7 +164,7 @@ function check(nextX, nextY, fig) {
 };
 
 function turn() {
-    if (game.over !== true) {
+    if (round.over !== true) {
         clean();
         var newWidth = curTetro.fig.length;
         var newLength = curTetro.fig[0].length;
@@ -173,7 +184,7 @@ function turn() {
             curTetro.fig = b;
         };
         merge();
-        printArray(mainScene);
+        display.scene(mainScene);
     };
 };
 

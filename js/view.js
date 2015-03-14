@@ -1,13 +1,12 @@
 window.onload = function() {
-    game = new Game();
-    printArray(mainScene);
-    message("PRESS SPACE TO START");
+    round = new Round();
+    display = new Display(pausedScene);
 };
 
 ///////-----------------------------------------------------------
 //------ARROWS
 document.addEventListener('keydown', function(event) {
-    if (game.over == false && game.pause == false) {
+    if (round.over == false && round.pause == false) {
 
         // Arrows 
         if (event.keyCode == 37 || event.keyCode == 65) {
@@ -18,13 +17,9 @@ document.addEventListener('keydown', function(event) {
             turn(); // up / W
         } else if (event.keyCode == 40 || event.keyCode == 83) {
             move(0, 1); // S
-        }
-        /*else if (event.keyCode == 81) {
-            fade(); // Q
-        } */
-        else if (event.keyCode == 32) {
-            if (game.pause == false) {
-                game.pause = true;
+        } else if (event.keyCode == 32) {
+            if (round.pause == false) {
+                round.pause = true;
                 fade();
             }
         } // **arrows
@@ -33,50 +28,67 @@ document.addEventListener('keydown', function(event) {
         }
 
     } else {
-        if (game.over == true) {
+        if (round.over == true) {
             if (event.keyCode == 32) {
-                game = new Game();
-                game.start();
-                printArray(mainScene);
+                round = new Round();
+                round.start();
+                round.over = false;
+                display.scene(mainScene);
                 printInfo("#headerMid", "Try hard!");
-                game.over = false;
-                game.play();
+                round.play();
             }
-        } else if (game.pause == true && event.keyCode == 32) {
-            game.pause = false;
-            printArray(mainScene);
+        } else if (round.pause == true && event.keyCode == 32) {
+            round.pause = false;
+            display.scene(mainScene);
         }
     }
     //alert(event.keyCode); // проверяем код кнопки
 });
-
 //--------------------------ARROWS
+///////-----------------------------------------------------------
+
+
+///////-----------------------------------------------------------
+// -------------------------Menu Buttons
 var help = document.getElementById('help');
 var about = document.getElementById('about');
+
 help.onclick = function() {
-    printArray(pausedScene);
-    message('Arrows or AWSD to move. Q to drop figure. SPACE to pause.')
+    display.scene(pausedScene);
+    display.message('Arrows or AWSD to move. Q to drop figure. SPACE to pause.')
 }
 about.onclick = function() {
-    printArray(pausedScene);
-    message('This is a game like tetris. No one is going to help you.')
+    display.scene(pausedScene);
+    display.message('This is a round like tetris. No one is going to help you.')
 }
+// -------------------------Menu Buttons
+///////-----------------------------------------------------------
 
 
+var Display = function(firstScene) {
+    // display appers when window loaded
+    // first scene displaying
+    this.scene(firstScene); 
+    this.message("PRESS SPACE TO START");
 
+};
 
-function printArray(a) {
+Display.prototype.scene = function(a) {
+    // to output the array
     printNextTetro();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
     //console.log(output);
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 20; i++) 
+    {
         var line = document.createElement("div");
         var thisLine = output.appendChild(line);
-        for (j = 0; j < 10; j++) {
+        for (j = 0; j < 10; j++) 
+        {
             var newDiv = document.createElement("div");
             newDiv.className = "pixel";
-            if (a[i][j] !== 0) {
+            if (a[i][j] !== 0) 
+            {
                 //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
                 newDiv.style.background = colorList[a[i][j] - 1];
             };
@@ -85,7 +97,9 @@ function printArray(a) {
     };
 };
 
-function message(text) {
+
+
+Display.prototype.message = function(text) {
     var sceneDiv = document.querySelector("#scene");
     var messageDiv = document.createElement("div");
     messageDiv.className = "panel message";
@@ -110,18 +124,18 @@ function printNextTetro() {
     }
     printInfo("#nextFigure", "Next figure: " + inThisBar);
 
-    var speedToView = 1000 - game.speed;
+    var speedToView = 1000 - round.speed;
     printInfo("#speed", "Speed: " + speedToView);
-    printInfo("#scores", "Score: " + game.scores);
+    printInfo("#scores", "Score: " + round.scores);
 };
 
 
 
 function fade() {
-    if (game.over == false) {
+    if (round.over == false) {
         coloredArrayGenerate();
-        printArray(pausedScene);
-        message("PAUSED PRESS SPACE TO CONTINUE");
+        display.scene(pausedScene);
+        display.message("PAUSED PRESS SPACE TO CONTINUE");
         console.log("Paused");
     }
 }

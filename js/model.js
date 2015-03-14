@@ -1,9 +1,32 @@
+var settings = {};
+var tetroBar = [];
+var nextTetroBar = [];
+
+/*var request = new XMLHttpRequest();
+request.open('GET', './config.json', true);
+
+request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+        settings = JSON.parse(request.responseText);
+        console.log(settings);
+        tetroBar = settings.defoultTetroBar;
+        nextTetroBar = settings.defoultTetroBar;
+    } else {
+        alert('We reached our target server, but it returned an error')
+    }
+};
+
+request.onerror = function() {
+    // There was a connection error of some sort
+};
+
+request.send();*/
+
 var mainScene = generateArray(20, 10);
 var tetroBar = [0, 1, 2, 3, 4, 5, 6];
 var nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
 var pausedScene = generateArray(20, 10);
 var step = 0;
-
 shuffle(tetroBar);
 shuffle(nextTetroBar);
 coloredArrayGenerate();
@@ -16,35 +39,11 @@ function coloredArrayGenerate(array) {
         };
 }
 
-var curTetro = nextTetro();
-
-var colorList = [
-    ['#B70F0A'],
-    ['#1882D9'],
-    ['#2E1572'],
-    ['#4C7A34'],
-    ['#D96D0D'],
-    ['#4D3541'],
-    ['#631878'],
-];
-
-function generateArray(h, w) {
-    var a = new Array(20);
-    for (var i = 0; i < 20; i++) {
-        a[i] = new Array(10);
-        for (var j = 0; j < 10; j++) {
-            a[i][j] = 0;
-        }
-    };
-    return a;
+var Tetromino = function() {
+    this.set();
 };
 
-function shuffle(o) {
-    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};
-
-function nextTetro() {
+Tetromino.prototype.set = function() {
     var superList = [
         [
             [0, 0, 0, 0],
@@ -77,15 +76,11 @@ function nextTetro() {
             [7, 7, 0]
         ] //S
     ];
-
-    var result = {
-        fig: superList[0],
-        X: 3,
-        Y: 0
-    };
-
+        this.fig = superList[0];
+        this.X = 3;
+        this.Y = 0;
     if (step < 7) {
-        result.fig = superList[tetroBar[step]];
+        this.fig = superList[tetroBar[step]];
         step++;
         console.log("next");
         if (step == 6) {
@@ -95,5 +90,37 @@ function nextTetro() {
             console.log(tetroBar);
         }
     }
-    return result;
+}
+
+
+var curTetro = new Tetromino();
+
+
+
+var colorList = [
+    ['#B70F0A'],
+    ['#1882D9'],
+    ['#2E1572'],
+    ['#4C7A34'],
+    ['#D96D0D'],
+    ['#4D3541'],
+    ['#631878'],
+];
+
+function generateArray(h, w) {
+    var a = new Array(20);
+    for (var i = 0; i < 20; i++) {
+        a[i] = new Array(10);
+        for (var j = 0; j < 10; j++) {
+            a[i][j] = 0;
+        }
+    };
+    return a;
 };
+
+function shuffle(o) {
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+
