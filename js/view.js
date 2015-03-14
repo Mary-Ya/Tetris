@@ -7,26 +7,36 @@ window.onload = function() {
 //------ARROWS
 document.addEventListener('keydown', function(event) {
     if (round.over == false && round.pause == false) {
-
-        // Arrows 
-        if (event.keyCode == 37 || event.keyCode == 65) {
-            curTetro.move(-1, 0); // <- / A
-        } else if (event.keyCode == 39 || event.keyCode == 68) {
-            curTetro.move(1, 0); // -> / D
-        } else if (event.keyCode == 38 || event.keyCode == 87) {
-            turn(); // up / W
-        } else if (event.keyCode == 40 || event.keyCode == 83) {
-            curTetro.move(0, 1); // S
-        } else if (event.keyCode == 32) {
-            if (round.pause == false) {
-                round.pause = true;
-                fade();
-            }
-        } // **arrows
-        else if (event.keyCode == 81) { //Drop down / Q
-            drop();
-        }
-
+        switch (event.keyCode) {
+            case 37: // <- / Left arrow
+            case 65: // <- / A
+                curTetro.move(-1, 0);
+                break;
+            case 39: // -> / Right arrow
+            case 68: // -> / D
+                curTetro.move(1, 0);
+                break;
+            case 38: // ^ / Up arrow 
+            case 87: // ^ / W
+                turn();
+                break;
+            case 40: // v / Down arrow
+            case 83: // v / S
+                curTetro.move(0, 1);
+                break;
+            case 32: //Spasebar 
+                if (round.pause == false) {
+                    round.pause = true;
+                    fade();
+                }
+                break;
+            case 81: // Q
+                drop();
+                break;
+            default:
+                console.log("No actions on button " + event.keyCode)
+                break;
+        };
     } else {
         if (round.over == true) {
             if (event.keyCode == 32) {
@@ -68,7 +78,7 @@ about.onclick = function() {
 var Display = function(firstScene) {
     // display appers when window loaded
     // first scene displaying
-    this.scene(firstScene); 
+    this.scene(firstScene);
     this.message("PRESS SPACE TO START");
 
 };
@@ -79,16 +89,13 @@ Display.prototype.scene = function(a) {
     var output = document.querySelector("#scene");
     output.innerHTML = "";
     //console.log(output);
-    for (i = 0; i < 20; i++) 
-    {
+    for (i = 0; i < 20; i++) {
         var line = document.createElement("div");
         var thisLine = output.appendChild(line);
-        for (j = 0; j < 10; j++) 
-        {
+        for (j = 0; j < 10; j++) {
             var newDiv = document.createElement("div");
             newDiv.className = "pixel";
-            if (a[i][j] !== 0) 
-            {
+            if (a[i][j] !== 0) {
                 //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
                 newDiv.style.background = colorList[a[i][j] - 1];
             };
