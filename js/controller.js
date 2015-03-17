@@ -1,62 +1,49 @@
-var Round = function() {
+function Round() {
     // new round started
     this.scores = 0;
     this.speed = 1000;
     this.over = true;
     this.pause = false;
-
 };
 
-Round.prototype = {
-
-};
+/*Round.prototype = function() {
+    this.start();
+};*/
 
 Round.prototype.start = function() {
-    mainScene = generateArray(20, 10);
+    //generateArray(20, 10);
     tetroBar = [0, 1, 2, 3, 4, 5, 6];
     nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
     pausedScene = generateArray(20, 10);
     step = 0;
+    this.over = false;
+    this.play();
     shuffle(tetroBar);
     shuffle(nextTetroBar);
     coloredArrayGenerate();
+    //mainScene.makeNew(20, 10);
+    
 };
 
 Round.prototype.play = function() {
-
     merge();
-    display.scene(mainScene);
-
+    display.scene(mainScene.blocks);
     var timer = setTimeout(function run() {
         if (round.over == false) {
             curTetro.move(0, 1);
             timer = setTimeout(run, round.speed);
         } else {
             clearTimeout(timer);
-        }
+        };
     }, round.speed);
+};
 
-}
 
-/*Tetromino.prototype.curTetro.move(direction) {
-    switch (direction) {
-        case left:
-            break;
-        case right:
-            break;
-        case drop:  
-            break;  
-        default:
-            console.log("Use existed directions: left, right, drop")
-            break;
-    };
-};*/
 
 Tetromino.prototype.move = function(ofsX, ofsY) {
     if (round.over !== true && round.pause !== true) {
         var nextX = curTetro.X + ofsX;
         var nextY = curTetro.Y + ofsY;
-
         clean();
         var cantMove = check(nextX, nextY, curTetro.fig);
         merge();
@@ -69,17 +56,16 @@ Tetromino.prototype.move = function(ofsX, ofsY) {
             if (ofsY !== 0) { // если движение по Y
                 cutLines();
                 curTetro = new Tetromino();
-                //printNextTetro("Next figure: " + curTetro.fig);
+                //display.info("Next figure: " + curTetro.fig);
                 cantMove = check(3, 0, curTetro.fig);
-                display.scene(mainScene);
+                display.scene(mainScene.blocks);
                 if (cantMove !== false) {
                     round.over = true;
                     console.log("GameOver");
                     coloredArrayGenerate();
                     display.scene(pausedScene);
                     display.message("GAME OVER! PRESS SPACE TO RESTART");
-                    printInfo("#headerMid", "Ready to play again?");
-
+                    display.info("#headerMid", "Ready to play again?");
                 };
             };
         };
@@ -90,31 +76,31 @@ function merge() {
     for (var i = 0; i < curTetro.fig.length; i++)
         for (var j = 0; j < curTetro.fig[i].length; j++) {
             if (curTetro.fig[i][j] !== 0)
-                mainScene[curTetro.Y + i][curTetro.X + j] += curTetro.fig[i][j];
+                round.mainScene.blocks[curTetro.Y + i][curTetro.X + j] += curTetro.fig[i][j];
         };
-    display.scene(mainScene);
+    display.scene(mainScene.blocks);
 };
 
 function clean() {
     for (var i = 0; i < curTetro["fig"].length; i++) {
         for (var j = 0; j < curTetro["fig"][i].length; j++) {
             if (curTetro.fig[i][j] !== 0) {
-                mainScene[curTetro.Y + i][curTetro.X + j] = 0;
+                mainScene.blocks[curTetro.Y + i][curTetro.X + j] = 0;
             }
         }
     };
-    display.scene(mainScene);
+    display.scene(mainScene.blocks);
 };
 
 function cutLines() {
     var plusSpeed = false;
     var reduceIt = true;
     var linesCount = 0;
-    for (var i = 0; i < mainScene.length; i++) {
+    for (var i = 0; i < mainScene.blocks.length; i++) {
         //console.log("This line: " + a[i]);
         reduceIt = true;
-        for (var j = 0; j < mainScene[i].length; j++) {
-            if (mainScene[i][j] == 0) {
+        for (var j = 0; j < mainScene.blocks[i].length; j++) {
+            if (mainScene.blocks[i][j] == 0) {
                 reduceIt = false;
             } else {
 
@@ -138,11 +124,11 @@ function cutLines() {
             }
 
             var text = "Scores: " + round.scores;
-            printInfo('#scores', text)
+            display.info('#scores', text)
             for (var j = i; j >= 0; j--) {
-                mainScene[j] = mainScene[j - 1];
+                mainScene.blocks[j] = mainScene.blocks[j - 1];
             }
-            mainScene[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            mainScene.blocks[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
     }
 };
@@ -156,7 +142,7 @@ function check(nextX, nextY, fig) {
             if (fig[i][j] !== 0) {
                 Y = nextY + i;
                 X = nextX + j;
-                if (Y < 0 || Y > 19 || X < 0 || X > 10 || mainScene[Y][X] !== 0) {
+                if (Y < 0 || Y > 19 || X < 0 || X > 10 || mainScene.blocks[Y][X] !== 0) {
                     dontMove = true;
                     break;
                 };
@@ -186,7 +172,7 @@ function turn() {
             curTetro.fig = b;
         };
         merge();
-        display.scene(mainScene);
+        display.scene(mainScene.blocks);
     };
 };
 
@@ -196,3 +182,25 @@ function drop() {
         curTetro.move(0, 1);
     }
 };
+
+function Scene (h, w) {
+    this.blocks = this.makeNew(h, w);
+};
+
+Scene.prototype.makeNew = function(h, w) {
+    this.blocks = new Array(h);
+    for (var i = 0; i < h; i++) {
+        this.blocks[i] = new Array(w);
+        for (var j = 0; j < w; j++) {
+            this.blocks[i][j] = 0;
+        };
+    };
+};
+
+Scene.prototype.set = function(val) {
+    this.blocks = val;
+    display.scene(val);
+};
+
+
+mainScene = new Scene(20,10);

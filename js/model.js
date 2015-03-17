@@ -1,7 +1,3 @@
-var settings = {};
-var tetroBar = [];
-var nextTetroBar = [];
-
 /*var request = new XMLHttpRequest();
 request.open('GET', './config.json', true);
 
@@ -22,7 +18,8 @@ request.onerror = function() {
 
 request.send();*/
 
-var mainScene = generateArray(20, 10);
+
+
 var tetroBar = [0, 1, 2, 3, 4, 5, 6];
 var nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
 var pausedScene = generateArray(20, 10);

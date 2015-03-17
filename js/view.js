@@ -24,7 +24,7 @@ document.addEventListener('keydown', function(event) {
             case 83: // v / S
                 curTetro.move(0, 1);
                 break;
-            case 32: //Spasebar 
+            case 32: //Spacebar 
                 if (round.pause == false) {
                     round.pause = true;
                     fade();
@@ -39,20 +39,21 @@ document.addEventListener('keydown', function(event) {
         };
     } else {
         if (round.over == true) {
+            // if previous round overed
             if (event.keyCode == 32) {
+                //starting new round
                 round = new Round();
                 round.start();
-                round.over = false;
-                display.scene(mainScene);
-                printInfo("#headerMid", "Try hard!");
-                round.play();
+                // output array and information
+                display.scene(mainScene.blocks);
+                display.info("#headerMid", "Try hard!");
             }
         } else if (round.pause == true && event.keyCode == 32) {
             round.pause = false;
-            display.scene(mainScene);
-        }
-    }
-    //alert(event.keyCode); // проверяем код кнопки
+            display.scene(mainScene.blocks);
+        };
+    };
+    //alert(event.keyCode); // check pressed button keyCode
 });
 //--------------------------ARROWS
 ///////-----------------------------------------------------------
@@ -75,7 +76,7 @@ about.onclick = function() {
 ///////-----------------------------------------------------------
 
 
-var Display = function(firstScene) {
+Display = function(firstScene) {
     // display appers when window loaded
     // first scene displaying
     this.scene(firstScene);
@@ -85,7 +86,6 @@ var Display = function(firstScene) {
 
 Display.prototype.scene = function(a) {
     // to output the array
-    printNextTetro();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
     //console.log(output);
@@ -104,8 +104,6 @@ Display.prototype.scene = function(a) {
     };
 };
 
-
-
 Display.prototype.message = function(text) {
     var sceneDiv = document.querySelector("#scene");
     var messageDiv = document.createElement("div");
@@ -115,13 +113,13 @@ Display.prototype.message = function(text) {
     sceneDiv.appendChild(messageDiv);
 };
 
-function printInfo(block, text) {
+Display.prototype.info = function (block, text) {
     var output = document.querySelector(block);
     output.innerHTML = text;
 };
 
 
-function printNextTetro() {
+Display.prototype.nextTetro = function () {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
     if (step < 7) {
@@ -129,14 +127,11 @@ function printNextTetro() {
     } else {
         inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
-    printInfo("#nextFigure", "Next figure: " + inThisBar);
-
+    display.info("#nextFigure", "Next figure: " + inThisBar);
     var speedToView = 1000 - round.speed;
-    printInfo("#speed", "Speed: " + speedToView);
-    printInfo("#scores", "Score: " + round.scores);
+    display.info("#speed", "Speed: " + speedToView);
+    display.info("#scores", "Score: " + round.scores);
 };
-
-
 
 function fade() {
     if (round.over == false) {
