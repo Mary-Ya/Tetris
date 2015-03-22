@@ -40,6 +40,38 @@ var Tetromino = function() {
     this.set();
 };
 
+Tetromino.prototype.move = function(ofsX, ofsY) {
+    if (round.over !== true && round.pause !== true) {
+        var nextX = curTetro.X + ofsX;
+        var nextY = curTetro.Y + ofsY;
+        clean();
+        var cantMove = check(nextX, nextY, curTetro.fig);
+        mainScene.mergeWith(curTetro);
+        if (cantMove == false) {
+            clean();
+            curTetro.X = nextX; // просто меняем координаты
+            curTetro.Y = nextY;
+            mainScene.mergeWith(curTetro);
+        } else { // 
+            if (ofsY !== 0) { // если движение по Y
+                cutLines();
+                curTetro = new Tetromino();
+                //display.info("Next figure: " + curTetro.fig);
+                cantMove = check(3, 0, curTetro.fig);
+                display.scene(mainScene.blocks);
+                if (cantMove !== false) {
+                    round.over = true;
+                    console.log("GameOver");
+                    coloredArrayGenerate();
+                    display.scene(pausedScene);
+                    display.message("GAME OVER! PRESS SPACE TO RESTART");
+                    display.info("#headerMid", "Ready to play again?");
+                };
+            };
+        };
+    };
+};
+
 Tetromino.prototype.set = function() {
     var superList = [
         [
@@ -73,9 +105,9 @@ Tetromino.prototype.set = function() {
             [7, 7, 0]
         ] //S
     ];
-        this.fig = superList[0];
-        this.X = 3;
-        this.Y = 0;
+    this.fig = superList[0];
+    this.X = 3;
+    this.Y = 0;
     if (step < 7) {
         this.fig = superList[tetroBar[step]];
         step++;
@@ -88,11 +120,6 @@ Tetromino.prototype.set = function() {
         }
     }
 }
-
-
-var curTetro = new Tetromino();
-
-
 
 var colorList = [
     ['#B70F0A'],
@@ -120,4 +147,41 @@ function shuffle(o) {
     return o;
 };
 
+function Scene(h, w) {
+    this.blocks = [];
+    this.makeNew(h, w);
+};
 
+Scene.prototype.makeNew = function(h, w) {
+    this.blocks = new Array(h);
+    for (var i = 0; i < h; i++) {
+        this.blocks[i] = new Array(w);
+        for (var j = 0; j < w; j++) {
+            this.blocks[i][j] = 0;
+        };
+    };
+};
+
+Scene.prototype.set = function(val) {
+    this.blocks = val;
+    display.scene(this.blocks);
+};
+
+Scene.prototype.get = function() {
+    return this.blocks;
+};
+
+
+Scene.prototype.mergeWith = function(tetromino) {
+    for (var i = 0; i < tetromino.fig.length; i++)
+        for (var j = 0; j < tetromino.fig[i].length; j++) {
+            if (tetromino.fig[i][j] !== 0) {
+                var newScene = this.get();
+                newScene[tetromino.Y + i][tetromino.X + j] += tetromino.fig[i][j];
+                this.set(newScene);
+            }
+        };
+};
+
+var curTetro = new Tetromino();
+var mainScene = new Scene(20, 10);

@@ -26,7 +26,7 @@ Round.prototype.start = function() {
 };
 
 Round.prototype.play = function() {
-    merge();
+    mainScene.mergeWith(curTetro);
     display.scene(mainScene.blocks);
     var timer = setTimeout(function run() {
         if (round.over == false) {
@@ -40,46 +40,6 @@ Round.prototype.play = function() {
 
 
 
-Tetromino.prototype.move = function(ofsX, ofsY) {
-    if (round.over !== true && round.pause !== true) {
-        var nextX = curTetro.X + ofsX;
-        var nextY = curTetro.Y + ofsY;
-        clean();
-        var cantMove = check(nextX, nextY, curTetro.fig);
-        merge();
-        if (cantMove == false) {
-            clean();
-            curTetro.X = nextX; // просто меняем координаты
-            curTetro.Y = nextY;
-            merge();
-        } else { // 
-            if (ofsY !== 0) { // если движение по Y
-                cutLines();
-                curTetro = new Tetromino();
-                //display.info("Next figure: " + curTetro.fig);
-                cantMove = check(3, 0, curTetro.fig);
-                display.scene(mainScene.blocks);
-                if (cantMove !== false) {
-                    round.over = true;
-                    console.log("GameOver");
-                    coloredArrayGenerate();
-                    display.scene(pausedScene);
-                    display.message("GAME OVER! PRESS SPACE TO RESTART");
-                    display.info("#headerMid", "Ready to play again?");
-                };
-            };
-        };
-    };
-};
-
-function merge() {
-    for (var i = 0; i < curTetro.fig.length; i++)
-        for (var j = 0; j < curTetro.fig[i].length; j++) {
-            if (curTetro.fig[i][j] !== 0)
-                round.mainScene.blocks[curTetro.Y + i][curTetro.X + j] += curTetro.fig[i][j];
-        };
-    display.scene(mainScene.blocks);
-};
 
 function clean() {
     for (var i = 0; i < curTetro["fig"].length; i++) {
@@ -171,7 +131,7 @@ function turn() {
         if (cantMove == false) {
             curTetro.fig = b;
         };
-        merge();
+        mainScene.mergeWith(curTetro);
         display.scene(mainScene.blocks);
     };
 };
@@ -183,24 +143,3 @@ function drop() {
     }
 };
 
-function Scene (h, w) {
-    this.blocks = this.makeNew(h, w);
-};
-
-Scene.prototype.makeNew = function(h, w) {
-    this.blocks = new Array(h);
-    for (var i = 0; i < h; i++) {
-        this.blocks[i] = new Array(w);
-        for (var j = 0; j < w; j++) {
-            this.blocks[i][j] = 0;
-        };
-    };
-};
-
-Scene.prototype.set = function(val) {
-    this.blocks = val;
-    display.scene(val);
-};
-
-
-mainScene = new Scene(20,10);
