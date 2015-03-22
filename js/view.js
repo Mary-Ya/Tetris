@@ -31,7 +31,7 @@ document.addEventListener('keydown', function(event) {
                 }
                 break;
             case 81: // Q
-                drop();
+                curTetro.drop();
                 break;
             default:
                 console.log("No actions on button " + event.keyCode)

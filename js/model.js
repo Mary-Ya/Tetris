@@ -37,18 +37,20 @@ function coloredArrayGenerate(array) {
 }
 
 var Tetromino = function() {
-    this.set();
+    this.newTetromino();
 };
+
+
 
 Tetromino.prototype.move = function(ofsX, ofsY) {
     if (round.over !== true && round.pause !== true) {
         var nextX = curTetro.X + ofsX;
         var nextY = curTetro.Y + ofsY;
-        clean();
+        mainScene.deleteTetro(curTetro);
         var cantMove = check(nextX, nextY, curTetro.fig);
         mainScene.mergeWith(curTetro);
         if (cantMove == false) {
-            clean();
+            mainScene.deleteTetro(curTetro);
             curTetro.X = nextX; // просто меняем координаты
             curTetro.Y = nextY;
             mainScene.mergeWith(curTetro);
@@ -72,7 +74,14 @@ Tetromino.prototype.move = function(ofsX, ofsY) {
     };
 };
 
-Tetromino.prototype.set = function() {
+Tetromino.prototype.drop = function() {
+    var thisTetro = curTetro.fig;
+    while (thisTetro == curTetro.fig) {
+        curTetro.move(0, 1);
+    };
+};
+
+Tetromino.prototype.newTetromino = function() {
     var superList = [
         [
             [0, 0, 0, 0],
@@ -117,9 +126,9 @@ Tetromino.prototype.set = function() {
             tetroBar = nextTetroBar;
             shuffle(nextTetroBar);
             console.log(tetroBar);
-        }
-    }
-}
+        };
+    };
+};
 
 var colorList = [
     ['#B70F0A'],
@@ -181,6 +190,18 @@ Scene.prototype.mergeWith = function(tetromino) {
                 this.set(newScene);
             }
         };
+};
+
+Scene.prototype.deleteTetro = function(tetromino) {
+    for (var i = 0; i < tetromino["fig"].length; i++) {
+        for (var j = 0; j < tetromino["fig"][i].length; j++) {
+            if (tetromino.fig[i][j] !== 0) {
+                var newScene = this.get();
+                newScene[tetromino.Y + i][tetromino.X + j] = 0;
+                this.set(newScene);
+            };
+        };
+    };
 };
 
 var curTetro = new Tetromino();

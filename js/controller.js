@@ -21,13 +21,12 @@ Round.prototype.start = function() {
     shuffle(tetroBar);
     shuffle(nextTetroBar);
     coloredArrayGenerate();
-    //mainScene.makeNew(20, 10);
+    mainScene.makeNew(20, 10);
     
 };
 
 Round.prototype.play = function() {
     mainScene.mergeWith(curTetro);
-    display.scene(mainScene.blocks);
     var timer = setTimeout(function run() {
         if (round.over == false) {
             curTetro.move(0, 1);
@@ -36,20 +35,6 @@ Round.prototype.play = function() {
             clearTimeout(timer);
         };
     }, round.speed);
-};
-
-
-
-
-function clean() {
-    for (var i = 0; i < curTetro["fig"].length; i++) {
-        for (var j = 0; j < curTetro["fig"][i].length; j++) {
-            if (curTetro.fig[i][j] !== 0) {
-                mainScene.blocks[curTetro.Y + i][curTetro.X + j] = 0;
-            }
-        }
-    };
-    display.scene(mainScene.blocks);
 };
 
 function cutLines() {
@@ -113,7 +98,7 @@ function check(nextX, nextY, fig) {
 
 function turn() {
     if (round.over !== true) {
-        clean();
+        mainScene.deleteTetro(curTetro);
         var newWidth = curTetro.fig.length;
         var newLength = curTetro.fig[0].length;
         var b = new Array(newLength);
@@ -136,10 +121,5 @@ function turn() {
     };
 };
 
-function drop() {
-    var thisTetro = curTetro.fig;
-    while (thisTetro == curTetro.fig) {
-        curTetro.move(0, 1);
-    }
-};
+
 
