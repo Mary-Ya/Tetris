@@ -29,7 +29,6 @@ Round.prototype.start = function() {
     shuffle(nextTetroBar);
     this.pausedScene.colorRandomly();
     this.mainScene.makeNew(20, 10);
-    
 };
 
 Round.prototype.play = function() {
