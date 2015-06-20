@@ -3,23 +3,6 @@ window.onload = function() {
     display = new Display(round.pausedScene);
 };
 
-///////-----------------------------------------------------------
-// -------------------------Menu Buttons
-var help = document.getElementById('help');
-var about = document.getElementById('about');
-
-help.onclick = function() {
-    display.scene(round.pausedScene);
-    display.message('Arrows or AWSD to move. Q to drop figure. SPACE to pause.')
-}
-about.onclick = function() {
-    display.scene(round.pausedScene);
-    display.message('This is a round like tetris. No one is going to help you.')
-}
-// -------------------------Menu Buttons
-///////-----------------------------------------------------------
-
-
 Display = function(firstScene) {
     // display appers when window loaded
     // first scene displaying
@@ -58,17 +41,17 @@ Display.prototype.message = function(text) {
     sceneDiv.appendChild(messageDiv);
 };
 
-Display.prototype.info = function (block, text) {
+Display.prototype.info = function(block, text) {
     var output = document.querySelector(block);
     output.innerHTML = text;
 };
 
 
-Display.prototype.nextTetro = function () {
+Display.prototype.nextTetro = function() {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
     if (round.step < 7) {
-        inThisBar = names[tetroBar[round.step+1]];
+        inThisBar = names[tetroBar[round.step + 1]];
     } else {
         inThisBar = names[nextTetroBar[tetroBar[0]]];
     }
