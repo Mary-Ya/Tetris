@@ -2,38 +2,47 @@
 <html>
 
 <head>
-
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="edit-Type" edit="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>TeTriX</title>
-    <script type="text/javascript" src="js/model.js"></script>
-    <script type="text/javascript" src="js/controller.js"></script>
-
 </head>
 
 <body>
     <div id="header" class="panel">
         <div class="left"></div>
-        <div id="headerMid"class="middle">Ready to play?</div>
+        <div id="headerMid" class="middle">Ready to play?</div>
         <div class="right">
+<<<<<<< HEAD
 
             <div id = "help" class="but">Help</div>
             <div id = "about" class="but">About</div>
             <div id = "download" class="but"><a href = "https://github.com/Mary-Ya/Tetris/archive/master.zip">Download</a></div>
 
     </div>
+=======
+            <div id="help" class="but">Help</div>
+            <div id="about" class="but">About</div>
+            <div class="but"><a href="https://github.com/Mary-Ya/Tetris/archive/master.zip">Download</a></div>
+        </div>
+>>>>>>> origin/master
     </div>
 
     <div id="upPanel" class="panel">
-        <p id="nextFigure">Next figure:I</p>
+        <p id="nextFigure">Next figure:</p> 
+        <div id="nextTetromino"></div>
     </div>
     <div class="myLabel" id="scores">Score: 0</div>
     <div id="scene" class="panel"></div>
     <div class="myLabel" id="speed">Speed: 0</div>
     <div id="downPanel" class="panel"></div>
-
+    
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/scene.js"></script>
+    <script type="text/javascript" src="js/tetromino.js"></script>
     <script type="text/javascript" src="js/view.js"></script>
+    <script type="text/javascript" src="js/controls.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
 
 </body>
 
