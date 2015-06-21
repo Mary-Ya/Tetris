@@ -11,16 +11,16 @@ Tetromino.prototype.move = function(onScene, ofsX, ofsY) {
         onScene.mergeWith(this);
         if (cantMove == false) { 
             onScene.deleteTetro(this);
-            this.X = nextX; // просто меняем координаты
+            this.X = nextX;
             this.Y = nextY;
             onScene.mergeWith(this);
         } else { // если препятствия
             if (ofsY !== 0) { // если движение по Y
                 onScene.cutLines();
                 game.curTetro = new Tetromino();
-                display.info("#nextFigure", "Next figure: " + game.curTetro.fig);
+                //display.info("#nextFigure", "Next figure: " + game.curTetro.fig);
                 cantMove = onScene.check(3, 0, this.fig);
-                game.curTetro.X = 3; // просто меняем координаты
+                game.curTetro.X = 3; 
                 game.curTetro.Y = 0;
                 onScene.mergeWith(game.curTetro);
                 display.scene(onScene);
@@ -106,6 +106,7 @@ Tetromino.prototype.newTetromino = function() {
         this.fig = superList[game.tetroBar[game.step]];
         game.step++;
         console.log("next");
+        display.nextTetro();
         if (game.step == 6) {
             game.step = 0;
             game.tetroBar = game.nextTetroBar;

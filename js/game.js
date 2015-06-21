@@ -20,6 +20,7 @@ Game.prototype.start = function() {
     this.step = 0;
     this.over = false;
     this.play();
+    display.nextTetro();
 };
 
 Game.prototype.play = function() {
