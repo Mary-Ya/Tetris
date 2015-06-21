@@ -8,11 +8,25 @@ Display = function(firstScene) {
     // first scene displaying
     this.scene(firstScene);
     this.message("PRESS SPACE TO START");
+};
 
+Display.prototype.info = function(block, text) {
+    var output = document.querySelector(block);
+    output.innerHTML = text;
 };
 
 Display.prototype.scene = function(sceneToView) {
     // to output the array
+    var colorList = [
+    ['#B70F0A'],
+    ['#1882D9'],
+    ['#2E1572'],
+    ['#4C7A34'],
+    ['#D96D0D'],
+    ['#4D3541'],
+    ['#631878'],
+];
+
     var sceneBlocks = sceneToView.get();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
@@ -41,19 +55,13 @@ Display.prototype.message = function(text) {
     sceneDiv.appendChild(messageDiv);
 };
 
-Display.prototype.info = function(block, text) {
-    var output = document.querySelector(block);
-    output.innerHTML = text;
-};
-
-
 Display.prototype.nextTetro = function() {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
     if (round.step < 7) {
-        inThisBar = names[tetroBar[round.step + 1]];
+        inThisBar = names[round.tetroBar[round.step + 2]];
     } else {
-        inThisBar = names[nextTetroBar[tetroBar[0]]];
+        inThisBar = names[nextTetroBar[round.tetroBar[0]]];
     }
     display.info("#nextFigure", "Next figure: " + inThisBar);
     var speedToView = 1000 - round.speed;
@@ -62,7 +70,6 @@ Display.prototype.nextTetro = function() {
 };
 
 Display.prototype.fade = function(scene) {
-
     if (round.over == false) {
         scene.colorRandomly();
         display.scene(scene);
