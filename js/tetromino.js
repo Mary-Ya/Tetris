@@ -69,14 +69,11 @@ Tetromino.prototype.turnOn = function() {
 Tetromino.prototype.newTetromino = function() {
     var superList = [
         [
-            [0, 0, 0, 0],
-            [1, 1, 1, 1],
-            [0, 0, 0, 0]
+            [1, 1, 1, 1]
         ], //I
         [
             [0, 2, 0],
-            [2, 2, 2],
-            [0, 0, 0]
+            [2, 2, 2]
         ], //T
         [
             [3, 0, 0],
@@ -109,8 +106,9 @@ Tetromino.prototype.newTetromino = function() {
         if (round.step == 6) {
             round.step = 0;
             round.tetroBar = round.nextTetroBar;
-            shuffle(round.nextTetroBar);
+            round.shuffle(round.nextTetroBar);
             console.log(round.tetroBar);
         };
     };
 };
+
