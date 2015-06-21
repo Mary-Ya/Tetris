@@ -105,19 +105,19 @@ Scene.prototype.cutLines = function() {
             plusSpeed = true;
             linesCount++
             console.log("This line " + i + " will be reduced");
-            round.speed -= 20;
+            game.speed -= 20;
 
             if (linesCount > 3) {
-                round.scores += 1200;
+                game.scores += 1200;
             } else if (linesCount == 3) {
-                round.scores += 900;
+                game.scores += 900;
             } else if (linesCount == 2) {
-                round.scores += 400;
+                game.scores += 400;
             } else if (linesCount == 1) {
-                round.scores += 100;
+                game.scores += 100;
             }
 
-            var text = "Scores: " + round.scores;
+            var text = "Scores: " + game.scores;
             display.info('#scores', text);
 
             for (var j = i; j >= 0; j--) {
@@ -130,10 +130,14 @@ Scene.prototype.cutLines = function() {
 
 Scene.prototype.colorRandomly = function() {
     var color = Math.floor(Math.random() * 7);
-    var sceneBlocks = this.blocks;
-    for (var i = 0; i < 20; i++)
+    var sceneBlocks = this.blocks.map(function(lines){
+        return lines.map(
+            function(value){return value = color})
+    });
+/*    for (var i = 0; i < 20; i++)
         for (var j = 0; j < 10; j++) {
             sceneBlocks[i][j] = color;
-        };
+        };*/
+
     this.blocks = sceneBlocks;
 };

@@ -1,6 +1,6 @@
 window.onload = function() {
-    round = new Round();
-    display = new Display(round.pausedScene);
+    game = new Game();
+    display = new Display(game.pausedScene);
 };
 
 Display = function(firstScene) {
@@ -58,19 +58,19 @@ Display.prototype.message = function(text) {
 Display.prototype.nextTetro = function() {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
-    if (round.step < 7) {
-        inThisBar = names[round.tetroBar[round.step + 2]];
+    if (game.step < 7) {
+        inThisBar = names[game.tetroBar[game.step + 1]];
     } else {
-        inThisBar = names[nextTetroBar[round.tetroBar[0]]];
+        inThisBar = names[nextTetroBar[game.tetroBar[0]]];
     }
     display.info("#nextFigure", "Next figure: " + inThisBar);
-    var speedToView = 1000 - round.speed;
+    var speedToView = 1000 - game.speed;
     display.info("#speed", "Speed: " + speedToView);
-    display.info("#scores", "Score: " + round.scores);
+    display.info("#scores", "Score: " + game.scores);
 };
 
 Display.prototype.fade = function(scene) {
-    if (round.over == false) {
+    if (game.over == false) {
         scene.colorRandomly();
         display.scene(scene);
         display.message("PAUSED PRESS SPACE TO CONTINUE");
