@@ -16,8 +16,9 @@ Game.prototype.start = function() {
     this.pausedScene.colorRandomly();
     this.shuffle(this.tetroBar);
     this.shuffle(this.nextTetroBar);
-    this.curTetro = new Tetromino();
     this.step = 0;
+    this.curTetro = new Tetromino();
+    
     this.over = false;
     this.play();
     display.nextTetro();
