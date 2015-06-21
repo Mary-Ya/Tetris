@@ -26,7 +26,6 @@ Display.prototype.scene = function(sceneToView) {
     ['#4D3541'],
     ['#631878'],
 ];
-
     var sceneBlocks = sceneToView.get();
     var output = document.querySelector("#scene");
     output.innerHTML = "";

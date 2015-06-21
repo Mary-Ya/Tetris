@@ -20,6 +20,9 @@ Tetromino.prototype.move = function(onScene, ofsX, ofsY) {
                 game.curTetro = new Tetromino();
                 display.info("#nextFigure", "Next figure: " + game.curTetro.fig);
                 cantMove = onScene.check(3, 0, this.fig);
+                game.curTetro.X = 3; // просто меняем координаты
+                game.curTetro.Y = 0;
+                onScene.mergeWith(game.curTetro);
                 display.scene(onScene);
                 if (cantMove !== false) {
                     game.over = true;
