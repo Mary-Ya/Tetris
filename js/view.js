@@ -62,7 +62,7 @@ Display.prototype.nextTetro = function() {
         inThisBar = names[game.tetroBar[game.step + 1]];
     } else {
         inThisBar = names[nextTetroBar[game.tetroBar[0]]];
-    }
+    };
     display.info("#nextFigure", "Next figure: " + inThisBar);
     var speedToView = 1000 - game.speed;
     display.info("#speed", "Speed: " + speedToView);

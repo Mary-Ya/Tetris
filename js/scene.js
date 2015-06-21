@@ -31,13 +31,13 @@ Scene.prototype.makeNew = function(h, w) {
             this.blocks[i][j] = 0;
         };
     };
-//    console.log("makeNew called");
+    //    console.log("makeNew called");
 };
 
 Scene.prototype.set = function(val) {
     this.blocks = val;
     display.scene(this);
-//    console.log("scene.set called");
+    //    console.log("scene.set called");
 };
 
 Scene.prototype.get = function() {
@@ -103,7 +103,7 @@ Scene.prototype.cutLines = function() {
 
         if (reduceIt == true) {
             plusSpeed = true;
-            linesCount++
+            linesCount++;
             console.log("This line " + i + " will be reduced");
             game.speed -= 20;
 
@@ -119,7 +119,8 @@ Scene.prototype.cutLines = function() {
 
             var text = "Scores: " + game.scores;
             display.info('#scores', text);
-
+            var speedToView = 1000 - game.speed;
+            display.info("#speed", "Speed: " + speedToView);
             for (var j = i; j >= 0; j--) {
                 this.blocks[j] = this.blocks[j - 1];
             }
@@ -130,11 +131,13 @@ Scene.prototype.cutLines = function() {
 
 Scene.prototype.colorRandomly = function() {
     var color = Math.floor(Math.random() * 7);
-    var sceneBlocks = this.blocks.map(function(lines){
+    var sceneBlocks = this.blocks.map(function(lines) {
         return lines.map(
-            function(value){return value = color})
+            function(value) {
+                return value = color
+            })
     });
-/*    for (var i = 0; i < 20; i++)
+    /*    for (var i = 0; i < 20; i++)
         for (var j = 0; j < 10; j++) {
             sceneBlocks[i][j] = color;
         };*/
