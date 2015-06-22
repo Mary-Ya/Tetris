@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-request.open('GET', './config.json', false);
+request.open('GET', './config.json', true);
 
 var settings = {};
 
@@ -12,23 +12,11 @@ request.onload = function() {
     }
 };
 
-request.send();
+
 
 request.onerror = function() {
     // There was a connection error of some sort
 };
 
+request.send();
 
-
-/*request.onreadystatechange = function() {
-     initialize();
-}
-
-var initialize = function () {
-	if (request.readyState === 4) {
-        game = new Game();
-    	display = new Display(game.pausedScene);
-    } else {
-    	initialize();
-    }
-}*/

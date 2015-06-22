@@ -1,9 +1,15 @@
 window.onload = function() {
     /*request.send();
     console.log(request.responseText);*/
-    game = new Game();
-    display = new Display(game.pausedScene);
-
+    request.onreadystatechange = function() {
+        while (request.readyState < 4) {
+            console.log(request.readyState)
+        };
+        if (request.readyState === 4) {
+            game = new Game();
+            display = new Display(game.pausedScene);
+        }
+    }
 };
 
 Display = function(firstScene) {
