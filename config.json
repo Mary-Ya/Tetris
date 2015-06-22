@@ -11,8 +11,7 @@
 ],
   "boolean": true,
   "null": null,
-  "sceneWidth": 10,
-  "sceneHeight": 20,
+  "number": 123,
   "object": {
     "a": "b",
     "c": "d",
