@@ -1,24 +1,29 @@
 var Game = function() {
     // new game started
     this.scores = 0;
-    this.speed = 1000;
+    this.speed = settings.normal;
+    this.speedDifference = 100 - settings.normal/10;
+    /*
+    "normal": 800,
+    "fast":500,
+    "crazy":200
+    */
     this.over = true;
     this.pause = false;
-    this.tetroBar = [0, 1, 2, 3, 4, 5, 6];
-    this.nextTetroBar = [0, 1, 2, 3, 4, 5, 6];
-    this.mainScene = new Scene(20, 10);
-    this.pausedScene = new Scene(20, 10);
+    this.tetroBar = settings.defoultTetroBar;
+    this.nextTetroBar = settings.defoultTetroBar;
+    this.mainScene = new Scene(settings.sceneHeight, settings.sceneWidth);
+    this.pausedScene = new Scene(settings.sceneHeight, settings.sceneWidth);
 };
 
 Game.prototype.start = function() {
-    this.mainScene.makeNew(20, 10);
-    this.pausedScene.makeNew(20, 10);
+    this.mainScene.makeNew(settings.sceneHeight, settings.sceneWidth);
+    this.pausedScene.makeNew(settings.sceneHeight, settings.sceneWidth);
     this.pausedScene.colorRandomly();
     this.shuffle(this.tetroBar);
     this.shuffle(this.nextTetroBar);
     this.step = 0;
     this.curTetro = new Tetromino();
-    
     this.over = false;
     this.play();
     display.nextTetro();
