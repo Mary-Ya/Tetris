@@ -1,6 +1,9 @@
 window.onload = function() {
+    /*request.send();
+    console.log(request.responseText);*/
     game = new Game();
     display = new Display(game.pausedScene);
+
 };
 
 Display = function(firstScene) {
@@ -25,7 +28,6 @@ Display.prototype.info = function(block, text) {
 };
 
 Display.prototype.scene = function(sceneToView) {
-    
     var sceneBlocks = sceneToView.get();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
