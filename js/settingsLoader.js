@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-request.open('GET', './config.json', true);
+request.open('GET', 'http://mary-ya.github.io/Tetris/config.json', true);
 
 var settings = {};
 
