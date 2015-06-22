@@ -100,17 +100,11 @@ Display.prototype.message = function(text) {
 Display.prototype.nextTetro = function() {
     var names = ["I", "T", "J", "L", "O", "Z", "S"];
     var inThisBar = "";
-    /*if (game.step < 7) {
-        inThisBar = names[game.tetroBar[game.step]];
-    } else {
-        inThisBar = names[game.nextTetroBar[game.tetroBar[0]]];
-    };*/
     inThisBar = names[game.tetroBar[game.step]];
     display.info("#nextFigure", "Next figure: " + inThisBar);
     var speedToView = 1000 - game.speed;
     display.info("#speed", "Speed: " + speedToView);
     display.info("#scores", "Score: " + game.scores);
-    //display.arrayOn(game.curTetro.fig, "#nextTetromino")
 };
 
 Display.prototype.fade = function(scene) {
