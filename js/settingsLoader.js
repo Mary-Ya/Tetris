@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-request.open('GET', 'http://mary-ya.github.io/Tetris/config.json', true);
+request.open('GET', './config.json', true);
 
 var settings = {};
 
@@ -18,5 +18,5 @@ request.onerror = function() {
     // There was a connection error of some sort
 };
 
-request.send();
+//request.send();
 
