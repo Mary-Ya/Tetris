@@ -26,9 +26,10 @@ Scene.prototype.get = function() {
 
 
 Scene.prototype.mergeWith = function(tetromino) {
+    console.log("!!!");
     var currentScene = this;
-    tetromino.fig.forEach(function(line, indexY, figure) {
-        line.forEach(function(cell, indexX, line) {
+    tetromino.fig.forEach(function(line, indexY, figure){
+        line.forEach(function(cell, indexX, line){
             if (cell !== 0) {
                 var newScene = this.get();
                 newScene[tetromino.Y + indexY][tetromino.X + indexX] += cell;
@@ -47,17 +48,7 @@ Scene.prototype.mergeWith = function(tetromino) {
 };
 
 Scene.prototype.deleteTetro = function(tetromino) {
-    tetromino.fig.forEach(function(line, indexY, figure) {
-        line.forEach(function(cell, indexX, line) {
-            if (cell !== 0) {
-                var newScene = this.get();
-                newScene[tetromino.Y + indexY][tetromino.X + indexX] = 0;
-                this.set(newScene);
-            }
-        }, this)
-    }, this)
-
-    /*for (var i = 0; i < tetromino.fig.length; i++) {
+    for (var i = 0; i < tetromino.fig.length; i++) {
         for (var j = 0; j < tetromino.fig[i].length; j++) {
             if (tetromino.fig[i][j] !== 0) {
                 var newScene = this.get();
@@ -65,7 +56,7 @@ Scene.prototype.deleteTetro = function(tetromino) {
                 this.set(newScene);
             }
         }
-    }*/
+    }
 };
 
 Scene.prototype.check = function(nextX, nextY, fig) {
@@ -77,9 +68,7 @@ Scene.prototype.check = function(nextX, nextY, fig) {
             if (fig[i][j] !== 0) {
                 Y = nextY + i;
                 X = nextX + j;
-                if (Y < 0 || Y > (settings.sceneHeight - 1) ||
-                    X < 0 || X > (settings.sceneWidth - 1) ||
-                    this.blocks[Y][X] !== 0) {
+                if (Y < 0 || Y > 19 || X < 0 || X > 10 || this.blocks[Y][X] !== 0) {
                     dontMove = true;
                     break;
                 }
@@ -107,7 +96,7 @@ Scene.prototype.cutLines = function() {
             plusSpeed = true;
             linesCount++;
             console.log("This line " + i + " will be reduced");
-            game.speed -= game.speedDifference;
+            game.speed -= 20;
 
             if (linesCount > 3) {
                 game.scores += 1200;

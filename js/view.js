@@ -8,15 +8,6 @@ Display = function(firstScene) {
     // first scene displaying
     this.scene(firstScene);
     this.message("PRESS SPACE TO START");
-    this.colorList = settings.theme;
-    /*0 - I - red
-      1 - T - light blue
-      2 - J - deep blue
-      3 - L - green
-      4 - O - yellow
-      5 - Z - brown
-      6 - S - purple
-    ];*/
 };
 
 Display.prototype.info = function(block, text) {
@@ -24,8 +15,60 @@ Display.prototype.info = function(block, text) {
     output.innerHTML = text;
 };
 
+/*Display.prototype.arrayOn = function(array, place) {
+    var colorList = [
+        ['#B70F0A'],
+        ['#1882D9'],
+        ['#2E1572'],
+        ['#4C7A34'],
+        ['#D96D0D'],
+        ['#4D3541'],
+        ['#631878'],
+    ];
+    var sceneBlocks = array;
+    var output = document.querySelector(place);
+    output.innerHTML = "";
+    sceneBlocks.forEach(function(innerArray, index, array) {
+        var line = document.createElement("div");
+        var thisLine = output.appendChild(line);
+        innerArray.forEach(function(cell, innerIndex, innerArray) {
+            var newDiv = document.createElement("div");
+            newDiv.className = "pixel";
+            if (cell !== 0) {
+                //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
+                newDiv.style.background = colorList[cell - 1];
+            };
+            thisLine.appendChild(newDiv);
+        });
+
+    });
+    for (i = 0; i < 20; i++) {
+        var line = document.createElement("div");
+        var thisLine = output.appendChild(line);
+        for (j = 0; j < 10; j++) {
+            var newDiv = document.createElement("div");
+            newDiv.className = "pixel";
+            if (sceneBlocks[i][j] !== 0) {
+                //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
+                newDiv.style.background = colorList[sceneBlocks[i][j] - 1];
+            };
+            thisLine.appendChild(newDiv);
+        };
+    };
+};*/
+
 Display.prototype.scene = function(sceneToView) {
-    
+    var colorList = [
+        ['#B70F0A'],
+        ['#1882D9'],
+        ['#2E1572'],
+        ['#4C7A34'],
+        ['#D96D0D'],
+        ['#4D3541'],
+        ['#631878'],
+    ];
+    // to output the array
+    //this.arrayOn(sceneToView,"#scene");
     var sceneBlocks = sceneToView.get();
     var output = document.querySelector("#scene");
     output.innerHTML = "";
@@ -38,7 +81,7 @@ Display.prototype.scene = function(sceneToView) {
             newDiv.className = "pixel";
             if (sceneBlocks[i][j] !== 0) {
                 //newDiv.style.backgroundColor = colorList[a[i][j] - 1]; // DON'T WORK IN IE
-                newDiv.style.background = this.colorList[sceneBlocks[i][j] - 1];
+                newDiv.style.background = colorList[sceneBlocks[i][j] - 1];
             };
             thisLine.appendChild(newDiv);
         };

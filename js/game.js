@@ -1,13 +1,7 @@
 var Game = function() {
     // new game started
     this.scores = 0;
-    this.speed = settings.normal;
-    this.speedDifference = 100 - settings.normal/10;
-    /*
-    "normal": 800,
-    "fast":500,
-    "crazy":200
-    */
+    this.speed = 1000;
     this.over = true;
     this.pause = false;
     this.tetroBar = settings.defoultTetroBar;
