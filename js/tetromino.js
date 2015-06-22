@@ -70,36 +70,16 @@ Tetromino.prototype.turnOn = function() {
 };
 
 Tetromino.prototype.newTetromino = function() {
-    var superList = [
-        [
-            [1, 1, 1, 1]
-        ], //I
-        [
-            [0, 2, 0],
-            [2, 2, 2]
-        ], //T
-        [
-            [3, 0, 0],
-            [3, 3, 3]
-        ], //J
-        [
-            [0, 0, 4],
-            [4, 4, 4]
-        ], //L
-        [
-            [5, 5],
-            [5, 5]
-        ], //O
-        [
-            [6, 6, 0],
-            [0, 6, 6]
-        ], //Z
-        [
-            [0, 7, 7],
-            [7, 7, 0]
-        ] //S
-    ];
-    this.fig = superList[0];
+    superList = settings.figures;
+    /*0 - I - red
+      1 - T - light blue
+      2 - J - deep blue
+      3 - L - green
+      4 - O - yellow
+      5 - Z - brown
+      6 - S - purple
+    ];*/
+    this.fig = [];
     this.X = 3;
     this.Y = 0;
     if (game.step < 7) {
@@ -111,7 +91,6 @@ Tetromino.prototype.newTetromino = function() {
             game.step = 0;
             game.tetroBar = game.nextTetroBar;
             game.shuffle(game.nextTetroBar);
-            
             console.log(game.tetroBar);
         };
     };
