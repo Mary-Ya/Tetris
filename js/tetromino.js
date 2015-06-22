@@ -106,13 +106,15 @@ Tetromino.prototype.newTetromino = function() {
         this.fig = superList[game.tetroBar[game.step]];
         game.step++;
         console.log("next");
-        display.nextTetro();
+        
         if (game.step == 6) {
             game.step = 0;
             game.tetroBar = game.nextTetroBar;
             game.shuffle(game.nextTetroBar);
+            
             console.log(game.tetroBar);
         };
     };
+    display.nextTetro();
 };
 
