@@ -1,19 +1,54 @@
-var request = new XMLHttpRequest();
-request.open('GET', './config.json', true);
+var loadingSettings = function(){
 
-var settings = {};
+	// Here should be a downloading settings function
 
-request.onload = function() {
-    if (request.status >= 200 && request.status < 400) {
-        settings = JSON.parse(request.responseText);
-        console.log(settings);
-    } else {
-        console.log('We reached our target server, but it returned an error');
-    }
-};
+	return {
+	  "defoultTetroBar": [0, 1, 2, 3, 4, 5, 6],
+	  "theme" : [
+	    ["#B70F0A"],
+	    ["#1882D9"],
+	    ["#2E1572"],
+	    ["#4C7A34"],
+	    ["#D96D0D"],
+	    ["#4D3541"],
+	    ["#631878"]
+	],
 
-request.onerror = function() {
-    // There was a connection error of some sort
-};
+	  "figures" : [
+	        [
+	            [1, 1, 1, 1]
+	        ], 
+	        [
+	            [0, 2, 0],
+	            [2, 2, 2]
+	        ], 
+	        [
+	            [3, 0, 0],
+	            [3, 3, 3]
+	        ], 
+	        [
+	            [0, 0, 4],
+	            [4, 4, 4]
+	        ], 
+	        [
+	            [5, 5],
+	            [5, 5]
+	        ], 
+	        [
+	            [6, 6, 0],
+	            [0, 6, 6]
+	        ], 
+	        [
+	            [0, 7, 7],
+	            [7, 7, 0]
+	        ] 
+	    ],
 
-request.send();
+	  "sceneWidth": 10,
+	  "sceneHeight": 20,
+
+	  "normal": 800,
+	  "fast":500,
+	  "crazy":200
+	};
+}
