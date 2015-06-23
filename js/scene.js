@@ -1,9 +1,16 @@
 function Scene(h, w) {
+
+	// create mainScene and pausedScene
+	// in Game constructor
+
     this.blocks = [];
     this.makeNew(h, w);
 };
 
 Scene.prototype.makeNew = function(h, w) {
+
+	// creates an empty array
+
     this.blocks = new Array(h);
     for (var i = 0; i < h; i++) {
         this.blocks[i] = new Array(w);
@@ -15,6 +22,11 @@ Scene.prototype.makeNew = function(h, w) {
 };
 
 Scene.prototype.set = function(val) {
+
+	// set a new value to scene
+
+	// should add validation for val here
+
     this.blocks = val;
     display.scene(this);
     //    console.log("scene.set called");
@@ -26,6 +38,11 @@ Scene.prototype.get = function() {
 
 
 Scene.prototype.mergeWith = function(tetromino) {
+
+	//merge scene with current tetromino
+	// call from Tetromino.prototype.move
+	// and Game.prototype.play
+
     var currentScene = this;
     tetromino.fig.forEach(function(line, indexY, figure) {
         line.forEach(function(cell, indexX, line) {
@@ -36,6 +53,7 @@ Scene.prototype.mergeWith = function(tetromino) {
             }
         }, this);
     }, this);
+
     /*for (var i = 0; i < tetromino.fig.length; i++)
         for (var j = 0; j < tetromino.fig[i].length; j++) {
             if (tetromino.fig[i][j] !== 0) {
@@ -47,6 +65,9 @@ Scene.prototype.mergeWith = function(tetromino) {
 };
 
 Scene.prototype.deleteTetro = function(tetromino) {
+
+	// delet tetromino from scene array
+
     tetromino.fig.forEach(function(line, indexY, figure) {
         line.forEach(function(cell, indexX, line) {
             if (cell !== 0) {
@@ -55,7 +76,7 @@ Scene.prototype.deleteTetro = function(tetromino) {
                 this.set(newScene);
             }
         }, this)
-    }, this)
+    }, this);
 
     /*for (var i = 0; i < tetromino.fig.length; i++) {
         for (var j = 0; j < tetromino.fig[i].length; j++) {
@@ -69,6 +90,10 @@ Scene.prototype.deleteTetro = function(tetromino) {
 };
 
 Scene.prototype.check = function(nextX, nextY, fig) {
+
+	// check if the tetrominon can be moved to the  next coordinates
+	// call from Tetromino.prototype.move
+
     var X = 0;
     var Y = 0;
     var dontMove = false;
@@ -89,6 +114,17 @@ Scene.prototype.check = function(nextX, nextY, fig) {
 };
 
 Scene.prototype.cutLines = function() {
+
+	/* function to:
+	 - reduce the lines after the figure is dropped
+	 and if there is a line to reduce
+	 - submit scores
+	 - increase the speed
+	 - display state info
+	*/
+
+	// maybe this function should be splited
+
     var plusSpeed = false;
     var reduceIt = true;
     var linesCount = 0;
@@ -132,6 +168,9 @@ Scene.prototype.cutLines = function() {
 };
 
 Scene.prototype.colorRandomly = function() {
+
+	// fuel scene with rundome color
+
     var color = Math.floor(Math.random() * 7);
     var sceneBlocks = this.blocks.map(function(lines) {
         return lines.map(
@@ -139,6 +178,7 @@ Scene.prototype.colorRandomly = function() {
                 return value = color;
             })
     });
+    
     /*    for (var i = 0; i < 20; i++)
         for (var j = 0; j < 10; j++) {
             sceneBlocks[i][j] = color;
